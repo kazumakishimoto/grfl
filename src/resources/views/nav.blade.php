@@ -13,6 +13,12 @@
     </li>
 
     <li class="nav-item">
+        <button class="btn btn-success">
+            <a href="{{ route('login.guest') }}" class="text-white">ゲストログイン</a>
+        </button>
+    </li>
+
+    <li class="nav-item">
       <a class="nav-link" href=""><i class="fas fa-pen mr-1"></i>投稿する</a>
     </li>
 
