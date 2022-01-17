@@ -5,11 +5,11 @@
   <ul class="navbar-nav ml-auto">
 
     <li class="nav-item">
-      <a class="nav-link" href="">ユーザー登録</a>
+      <a class="nav-link" href="{{ route('register') }}">ユーザー登録</a>
     </li>
 
     <li class="nav-item">
-      <a class="nav-link" href="">ログイン</a>
+      <a class="nav-link" href="{{ route('login') }}">ログイン</a>
     </li>
 
     <li class="nav-item">
