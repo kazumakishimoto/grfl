@@ -11,8 +11,15 @@
 |
 */
 
-Route::get('/', 'ArticleController@index');
-
 Auth::routes();
+Route::get('/', 'ArticleController@index');
+Route::get('/', 'ArticleController@index')->name('articles.index');
+Route::resource('/articles', 'ArticleController')->except(['index']);
+# authミドルウェア
+Route::resource('/articles', 'ArticleController')->except(['index'])->middleware('auth');
+Route::resource('/articles', 'ArticleController')->only(['show']);
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+# ゲストユーザーログイン
+Route::get('guest', 'Auth\LoginController@guestLogin')->name('login.guest');
