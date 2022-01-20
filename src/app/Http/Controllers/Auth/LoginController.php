@@ -7,6 +7,8 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
@@ -52,5 +54,27 @@ class LoginController extends Controller
         }
 
         return redirect('/');
+    }
+
+    public function redirectToProvider(string $provider)
+    {
+        return Socialite::driver($provider)->redirect();
+    }
+
+    public function handleProviderCallback(Request $request, string $provider)
+    {
+        $providerUser = Socialite::driver($provider)->stateless()->user();
+
+        $user = User::where('email', $providerUser->getEmail())->first();
+
+        if ($user) {
+            $this->guard()->login($user, true);
+            return $this->sendLoginResponse($request);
+        }
+        return redirect()->route('register.{provider}', [
+            'provider' => $provider,
+            'email' => $providerUser->getEmail(),
+            'token' => $providerUser->token,
+        ]);
     }
 }

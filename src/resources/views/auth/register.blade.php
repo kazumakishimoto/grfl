@@ -66,6 +66,9 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
+                                <a href="{{ route('login.{provider}', ['provider' => 'google']) }}" class="btn btn-block btn-danger">
+                                    <i class="fab fa-google mr-1"></i>Googleで登録
+                                </a>
                             </div>
                         </div>
                     </form>
