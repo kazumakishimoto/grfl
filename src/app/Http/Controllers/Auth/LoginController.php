@@ -56,25 +56,52 @@ class LoginController extends Controller
         return redirect('/');
     }
 
+    //SNS認証ページへユーザーをリダイレクト
     public function redirectToProvider(string $provider)
     {
         return Socialite::driver($provider)->redirect();
     }
 
+    //ログイン
     public function handleProviderCallback(Request $request, string $provider)
     {
+        //認証結果の受け取り
         $providerUser = Socialite::driver($provider)->stateless()->user();
 
-        $user = User::where('email', $providerUser->getEmail())->first();
+        //Google
+        if ($provider === 'google') {
+            //Googleから取得したユーザー情報からメールアドレスを取得
+            $user = User::where('email', $providerUser->getEmail())->first();
 
+            //Twitter
+        } elseif ($provider === 'twitter') {
+            //Twitterから取得したユーザー情報からユーザーIDを取得
+            $user = User::where('twitter_id', $providerUser->getId())->first();
+        }
+
+        //ログイン処理
         if ($user) {
             $this->guard()->login($user, true);
             return $this->sendLoginResponse($request);
         }
-        return redirect()->route('register.{provider}', [
-            'provider' => $provider,
-            'email' => $providerUser->getEmail(),
-            'token' => $providerUser->token,
-        ]);
+
+        //Google
+        if ($provider === 'google') {
+            return redirect()->route('register.{provider}', [
+                'provider' => $provider,
+                'email' => $providerUser->getEmail(),
+                'token' => $providerUser->token,
+            ]);
+
+            //Twitter
+        } elseif ($provider === 'twitter') {
+            //DBにユーザー情報がなければ作成する
+            return redirect()->route('register.{provider}', [
+                'provider' => $provider,
+                'twitter_id' => $providerUser->getId(),
+                'token' => $providerUser->token,
+                'tokenSecret' => $providerUser->tokenSecret,
+            ]);
+        }
     }
 }
