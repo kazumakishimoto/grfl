@@ -11,6 +11,7 @@
 |
 */
 
+# Auth
 Auth::routes();
 
 # Laravel Socialite
@@ -23,15 +24,14 @@ Route::prefix('register')->name('register.')->group(function () {
     Route::post('/{provider}', 'Auth\RegisterController@registerProviderUser')->name('{provider}');
 });
 
-Route::get('/', 'ArticleController@index');
-Route::get('/', 'ArticleController@index')->name('articles.index');
-Route::resource('/articles', 'ArticleController')->except(['index']);
-
-# authミドルウェア
+# Auth Middleware
 Route::resource('/articles', 'ArticleController')->except(['index'])->middleware('auth');
 Route::resource('/articles', 'ArticleController')->only(['show']);
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 # ゲストユーザーログイン
 Route::get('guest', 'Auth\LoginController@guestLogin')->name('login.guest');
+
+# Article
+Route::get('/', 'ArticleController@index');
+Route::get('/', 'ArticleController@index')->name('articles.index');
+Route::resource('/articles', 'ArticleController')->except(['index']);
