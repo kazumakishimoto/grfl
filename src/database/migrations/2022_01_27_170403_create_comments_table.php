@@ -22,7 +22,7 @@ class CreateCommentsTable extends Migration
 
             $table->foreign('user_id')
                 ->references('id')
-                ->on('user');
+                ->on('users');
             $table->foreign('article_id')
                 ->references('id')
                 ->on('articles')
