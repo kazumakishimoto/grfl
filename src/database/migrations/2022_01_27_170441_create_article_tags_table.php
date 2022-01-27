@@ -15,7 +15,18 @@ class CreateArticleTagsTable extends Migration
     {
         Schema::create('article_tags', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('article_id')->unsigned();
+            $table->bigInteger('tag_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('article_id')
+                ->references('id')
+                ->on('articles')
+                ->onDelete('cascade');
+            $table->foreign('tag_id')
+            ->references('id')
+            ->on('tags')
+            ->onDelete('cascade');
         });
     }
 
