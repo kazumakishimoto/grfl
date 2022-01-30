@@ -4,7 +4,7 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class PasswordValidation implements Rule
+class CustomPasswordValidation implements Rule
 {
     //最小文字数
     private const MIN_CHARACTER = 8;
