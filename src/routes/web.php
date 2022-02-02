@@ -35,3 +35,8 @@ Route::get('guest', 'Auth\LoginController@guestLogin')->name('login.guest');
 Route::get('/', 'ArticleController@index');
 Route::get('/', 'ArticleController@index')->name('articles.index');
 Route::resource('/articles', 'ArticleController')->except(['index']);
+
+#user
+Route::prefix('users')->name('users.')->group(function () {
+    Route::get('/{name}', 'UserController@show')->name('show');
+});
