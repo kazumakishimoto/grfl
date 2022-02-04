@@ -27,6 +27,11 @@ Route::prefix('register')->name('register.')->group(function () {
     Route::post('/{provider}', 'Auth\RegisterController@registerProviderUser')->name('{provider}');
 });
 
+# article
+Route::get('/', 'ArticleController@index')->name('articles.index');
+Route::resource('/articles', 'ArticleController')->except(['index', 'show'])->middleware('auth');
+Route::resource('/articles', 'ArticleController')->only(['show']);
+
 # user
 Route::prefix('users')->name('users.')->group(function () {
     // ユーザー詳細
@@ -57,7 +62,3 @@ Route::middleware('auth')->group(function () {
         Route::delete('/follow', 'UserController@unfollow')->name('unfollow');
     });
 });
-
-# Article
-Route::resource('/articles', 'ArticleController')->except(['index', 'show'])->middleware('auth');
-Route::resource('/articles', 'ArticleController')->only(['show']);

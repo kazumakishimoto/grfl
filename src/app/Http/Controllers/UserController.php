@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
+use App\Http\Requests\UserRequest;
+use App\Models\User;
+use App\Models\Article;
 
 class UserController extends Controller
 {
@@ -124,9 +130,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    //プロフィール編集画面
+    public function edit(string $name)
     {
-        //
+        $user = User::where('name', $name)->first();
+
+        return view('users.edit', ['user' => $user]);
     }
 
     /**
@@ -136,9 +145,59 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    //プロフィール編集処理
+    public function update(UserRequest $request, string $name)
     {
-        //
+        $user = User::where('name', $name)->first();
+        $all_request = $request->all();
+
+        // if (isset($all_request['avatar'])) {
+        //     $avatar = $request->file('avatar');
+        //     $upload_info = Storage::disk('s3')->putFile('avatar', $avatar, 'public');
+        //     $all_request['avatar'] = Storage::disk('s3')->url($upload_info);
+        //     $user->fill($all_request)->save();
+        // }
+
+        return redirect()->route('users.show', ["name" => $user->name]);
+    }
+
+    //パスワード編集画面
+    public function editPassword(string $name)
+    {
+        $user = User::where('name', $name)->first();
+
+        return view('users.edit_password', ['user' => $user]);
+    }
+
+    //パスワード編集処理
+    public function updatePassword(Request $request, string $name)
+    {
+        $user = User::where('name', $name)->first();
+
+        //現在のパスワードが合っているかチェック
+        if (!(Hash::check($request->current_password, $user->password))) {
+            return redirect()->back()
+                ->withInput()->withErrors(['current_password' => '現在のパスワードが違います']);
+        }
+
+        //現在のパスワードと新しいパスワードが違うかチェック
+        if ($request->current_password === $request->password) {
+            return redirect()->back()
+                ->withInput()->withErrors(['password' => '現在のパスワードと新しいパスワードが変わっていません']);
+        }
+
+        $this->passwordValidator($request->all())->validate();
+
+        $user->password = Hash::make($request->password);
+        $user->save();
+        return redirect()->route('users.show', ["name" => $user->name]);
+    }
+
+    public function passwordValidator(array $data)
+    {
+        return Validator::make($data, [
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
     }
 
     /**
@@ -147,8 +206,17 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(string $name)
     {
-        //
+        DB::transaction(function () use ($name) {
+            $user = $this->userService->delete($name);
+
+            // UserPolicyのdeleteメソッドでアクセス制限
+            $this->authorize('delete', $user);
+        });
+
+        toastr()->success('退会処理が完了しました');
+
+        return redirect()->route('articles.index');
     }
 }
