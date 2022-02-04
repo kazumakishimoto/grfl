@@ -22,7 +22,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'twitter_id', 'name', 'avatar', 'introduction', 'email', 'password',
+        'twitter_id', 'name', 'age', 'gender', 'avatar', 'introduction', 'email', 'password',
     ];
 
     /**
@@ -81,5 +81,22 @@ class User extends Authenticatable
     public function likes(): BelongsToMany
     {
         return $this->belongsToMany('App\Models\Article', 'likes')->withTimestamps();
+    }
+
+    public function isFollowedBy(?User $user): bool
+    {
+        return $user
+            ? (bool)$this->followers->where('id', $user->id)->count()
+            : false;
+    }
+
+    public function getCountFollowersAttribute(): int
+    {
+        return $this->followers->count();
+    }
+
+    public function getCountFollowingsAttribute(): int
+    {
+        return $this->followings->count();
     }
 }
