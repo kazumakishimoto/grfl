@@ -34,4 +34,16 @@ class Article extends Model
     {
         return $this->hasMany('App\Models\User', 'comments');
     }
+
+    public function isLikedBy(?User $user): bool
+    {
+        return $user
+            ? (bool)$this->likes->where('id', $user->id)->count()
+            : false;
+    }
+
+    public function getCountLikesAttribute(): int
+    {
+        return $this->likes->count();
+    }
 }
