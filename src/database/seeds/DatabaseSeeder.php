@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             ArticlesTableSeeder::class,
             TagsTableSeeder::class,
+            Article_tagTableSeeder::class,
             FollowsTableSeeder::class,
             CommentsTableSeeder::class,
             LikesTableSeeder::class,
