@@ -6,6 +6,7 @@ use App\Models\Article;
 use App\Models\Tag;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ArticleController extends Controller
 {
@@ -16,8 +17,9 @@ class ArticleController extends Controller
 
     public function index()
     {
-        $articles = Article::all()->sortByDesc('created_at')
-        ->load(['user', 'likes', 'tags']);
+        $articles = Article::with(['user', 'likes', 'tags'])
+        ->orderBy('created_at')
+        ->paginate(15);
 
         return view('articles.index', ['articles' => $articles]);
     }
@@ -85,7 +87,7 @@ class ArticleController extends Controller
 
     public function show(Article $article)
     {
-        return view('articles.show', ['article' => $article]);
+        return view('articles.show', ['article' => $article])->paginate(3);
     }
 
     public function like(Request $request, Article $article)
