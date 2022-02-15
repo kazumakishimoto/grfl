@@ -18,8 +18,8 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::with(['user', 'likes', 'tags'])
-        ->orderBy('created_at')
-        ->paginate(15);
+            ->orderBy('created_at', 'desc')
+            ->paginate(15);
 
         return view('articles.index', ['articles' => $articles]);
     }
@@ -87,7 +87,16 @@ class ArticleController extends Controller
 
     public function show(Article $article)
     {
-        return view('articles.show', ['article' => $article])->paginate(3);
+        return view('articles.show', ['article' => $article]);
+
+        // $comments = $article->comments()
+        //     ->orderBy('created_at', 'desc')
+        //     ->paginate(5);
+
+        // return view('articles.show', [
+        //     'article'  => $article,
+        //     'comments' => $comments
+        // ]);
     }
 
     public function like(Request $request, Article $article)
