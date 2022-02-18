@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\User;
 use App\Models\Tag;
+use App\Models\Comment;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -87,16 +89,14 @@ class ArticleController extends Controller
 
     public function show(Article $article)
     {
-        return view('articles.show', ['article' => $article]);
+        $comments = $article->comments()
+            ->orderBy('created_at', 'desc')
+            ->paginate(5);
 
-        // $comments = $article->comments()
-        //     ->orderBy('created_at', 'desc')
-        //     ->paginate(5);
-
-        // return view('articles.show', [
-        //     'article'  => $article,
-        //     'comments' => $comments
-        // ]);
+        return view('articles.show', [
+            'article'  => $article,
+            'comments' => $comments
+        ]);
     }
 
     public function like(Request $request, Article $article)

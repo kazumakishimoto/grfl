@@ -41,6 +41,9 @@ Route::prefix('articles')->name('articles.')->group(function () {
 # Tag
 Route::get('/tags/{name}', 'TagController@show')->name('tags.show');
 
+# comment
+Route::resource('/comments', 'CommentController')->only(['store', 'destroy'])->middleware('auth');
+
 # user
 Route::prefix('users')->name('users.')->group(function () {
     // ユーザー詳細

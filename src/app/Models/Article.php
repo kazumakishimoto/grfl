@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Article extends Model
 {
-
     protected $fillable = [
         'title',
         'body',
@@ -32,7 +31,7 @@ class Article extends Model
 
     public function comments(): HasMany
     {
-        return $this->hasMany('App\Models\User', 'comments');
+        return $this->hasMany('App\Models\Comment');
     }
 
     public function isLikedBy(?User $user): bool
