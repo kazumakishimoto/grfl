@@ -63,10 +63,10 @@
       {!! nl2br(e( $article->body )) !!}
     </div>
     {{-- <img src="{{ Storage::url($article->image)}}"> --}}
-    <img src="{{ asset('storage/images/' . $article['image']) }}">
+    <img src="{{ asset('storage/images/' . $article['image']) }}" width="200px">
   </div>
   <div class="card-body pt-0 pb-2 pl-3">
-    <div class="card-text">
+    <div class="card-text d-flex align-items-center">
       <article-like
         :initial-is-liked-by='@json($article->isLikedBy(Auth::user()))'
         :initial-count-likes='@json($article->count_likes)'
@@ -74,6 +74,10 @@
         endpoint="{{ route('articles.like', ['article' => $article]) }}"
       >
       </article-like>
+      <div class="ml-1 d-flex align-items-center">
+          <a class="p-1" href="{{ url('articles/' .$article->id) }}"><i class="far fa-comment fa-fw mr-1"></i></a>
+          <p class="mb-0 text-secondary">{{ count($article->comments) }}</p>
+        </div>
     </div>
   </div>
   @foreach($article->tags as $tag)
