@@ -8,6 +8,6 @@
     @foreach($articles as $article)
       @include('articles.card')
     @endforeach
-    @include('components.pagination')
+    @include('articles.pagination')
   </div>
 @endsection

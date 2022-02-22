@@ -10,5 +10,6 @@
     @include('comments.form')
     @endauth
     @include('comments.card')
+    @include('comments.pagination')
   </div>
 @endsection
