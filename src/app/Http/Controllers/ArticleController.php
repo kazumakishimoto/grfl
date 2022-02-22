@@ -9,6 +9,7 @@ use App\Models\Comment;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
@@ -41,6 +42,14 @@ class ArticleController extends Controller
     {
         $article->fill($request->all());
         $article->user_id = $request->user()->id;
+        // 画像ファイルの保存場所指定
+        if (request('image')) {
+            $filename = $request->file('image');
+            $request->file('image')->storeAs('public/images', $filename);
+            // $image = $request->file('image');
+            // $filename= $image->store('public/images');
+            // $article->image = str_replace('public/images/', '', $filename);
+        }
         $article->save();
 
         $request->tags->each(function ($tagName) use ($article) {
