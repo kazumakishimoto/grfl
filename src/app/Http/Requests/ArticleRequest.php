@@ -24,8 +24,9 @@ class ArticleRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:50',
-            'body' => 'required|max:500',
+            'title' => 'required|max:50|not_regex:/<\/*script>/u',
+            'body' => 'required|max:500|not_regex:/<\/*script>/u',
+            'image' =>'image',
             'tags' => 'json|regex:/^(?!.*\s).+$/u|regex:/^(?!.*\/).*$/u',
         ];
     }
@@ -35,6 +36,7 @@ class ArticleRequest extends FormRequest
         return [
             'title' => 'タイトル',
             'body' => '本文',
+            'image' => '画像',
             'tags' => 'タグ',
         ];
     }

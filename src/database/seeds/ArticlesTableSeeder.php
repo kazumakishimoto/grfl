@@ -17,8 +17,8 @@ class ArticlesTableSeeder extends Seeder
         for ($i = 1; $i <= 5; $i++) {
             $article = Article::create([
                 'user_id'    => $i,
-                'title'       => 'これはテスト投稿です' . $i,
-                'body'       => 'これはテスト投稿です' . $i,
+                'title'       => 'test_title' . $i,
+                'body'       => 'test_text' . $i,
                 'created_at' => now(),
                 'updated_at' => now()
             ]);
