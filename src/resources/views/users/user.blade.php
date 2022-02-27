@@ -4,6 +4,22 @@
       <a href="{{ route('users.show', ['name' => $user->name]) }}" class="text-dark">
         <i class="fas fa-user-circle fa-3x"></i>
       </a>
+      @if( Auth::id() === $user->id )
+      <!-- dropdown -->
+      <div class="ml-auto card-text">
+        <div class="dropdown">
+          <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-ellipsis-v"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <a class="dropdown-item" href="{{ route("users.edit", ['name' => $user->name]) }}">
+              <i class="fas fa-pen mr-1"></i>プロフィールを更新する
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- dropdown -->
+      @endif
       @if( Auth::id() !== $user->id )
         <follow-button
           class="ml-auto"

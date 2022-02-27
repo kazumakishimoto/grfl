@@ -13,43 +13,6 @@ use App\Models\Article;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show(string $name)
     {
         $user = User::where('name', $name)->first()
@@ -137,13 +100,6 @@ class UserController extends Controller
         return ['name' => $name];
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    //プロフィール編集画面
     public function edit(string $name)
     {
         $user = User::where('name', $name)->first();
@@ -151,26 +107,28 @@ class UserController extends Controller
         return view('users.edit', ['user' => $user]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    //プロフィール編集処理
     public function update(UserRequest $request, string $name)
     {
         $user = User::where('name', $name)->first();
-        $all_request = $request->all();
+        // UserPolicyのupdateメソッドでアクセス制限
+        $this->authorize('update', $user);
 
-        // if (isset($all_request['avatar'])) {
-        //     $avatar = $request->file('avatar');
-        //     $upload_info = Storage::disk('s3')->putFile('avatar', $avatar, 'public');
-        //     $all_request['avatar'] = Storage::disk('s3')->url($upload_info);
-        //     $user->fill($all_request)->save();
-        // }
+        // 画像アップロード
+        if (request('avatar')) {
+            $image = $request->file('avatar');
+            if (app()->isLocal() || app()->runningUnitTests()) {
+                // 開発環境
+                $path = $image->storeAs('public/images', $user->id . '.jpg');
+                $user->avatar = Storage::url($path);
+                // $request->file('avatar')->storeAs('public/images', $image);
+            } else {
+                // 本番環境
+                $path = Storage::disk('s3')->put('/', $image, 'public');
+                $user->avatar = Storage::disk('s3')->url($path);
+            }
+        }
 
+        $user->fill($request->all())->save();
         return redirect()->route('users.show', ["name" => $user->name]);
     }
 
@@ -213,23 +171,15 @@ class UserController extends Controller
         ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(string $name)
+    public function destroy(UserRequest $request, string $name)
     {
-        DB::transaction(function () use ($name) {
-            $user = $this->userService->delete($name);
+        $user = User::where('name', $name)->first();
+        // UserPolicyのdeleteメソッドでアクセス制限
+        $this->authorize('delete', $user);
+        $user->delete();
 
-            // UserPolicyのdeleteメソッドでアクセス制限
-            $this->authorize('delete', $user);
-        });
-
-        toastr()->success('退会処理が完了しました');
-
-        return redirect()->route('articles.index');
+        return $this->resigned($request, $user)
+            ?: redirect($this->redirectPath());
+        // return redirect()->route('articles.index');
     }
 }
