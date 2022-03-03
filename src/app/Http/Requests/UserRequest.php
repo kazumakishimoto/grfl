@@ -34,14 +34,13 @@ class UserRequest extends FormRequest
         //     ];
         // }
 
-        $uniqueName = 'unique:users,name,' . Auth::id() . ',id';
-        $uniqueEmail = 'unique:users,email,' . Auth::id() . ',id';
         return [
-            'name' => ['required', 'string', 'min:3', 'max:15', $uniqueName],
+            'name' => ['required','regex:/^(?!.*\s).+$/u', 'regex:/^(?!.*\/).*$/u', 'max:15', Rule::unique('users')->ignore(Auth::id())],
             'age' => ['numeric', 'min:1', 'max:100', 'nullable'],
-            'introduction' => ['text', 'max:200', 'nullable'],
-            'avatar' => ['image'],
-            'email' => ['required', 'string', 'email', 'max:255', $uniqueEmail],
+            'introduction' => ['max:200', 'nullable'],
+            'avatar' => ['image', 'nullable'],
+            // 'avatar'     => ['file', 'mimes:jpeg,png,jpg,bmb', 'max:2048'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore(Auth::id())],
             // 'password' => ['required', 'string', 'min:8', 'confirmed'],
         ];
     }

@@ -2,6 +2,8 @@
   <div class="card-body d-flex flex-row">
     <a href="{{ route('users.show', ['name' => $article->user->name]) }}" class="text-dark">
       <i class="fas fa-user-circle fa-3x mr-1"></i>
+      {{-- <img src="{{ $user->avatar }}" alt="Contact Person" class="img-fuild rounded-circle" width="60" height="60"> --}}
+      {{-- <img src="{{ asset('storage/images/'.$user->avatar) }}" class="img-fuild rounded-circle" width="60" height="60"> --}}
     </a>
     <div>
       <div class="font-weight-bold">

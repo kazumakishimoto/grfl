@@ -62,9 +62,9 @@ Route::middleware('auth')->group(function () {
         // プロフィール編集
         Route::get('/edit', 'UserController@edit')->name('edit');
         // プロフィール更新
-        Route::patch('/', 'UserController@update')->name('update');
+        Route::patch('/update', 'UserController@update')->name('update');
         // ユーザー削除
-        Route::delete('/', 'UserController@destroy')->name('destroy');
+        Route::delete('/destroy', 'UserController@destroy')->name('destroy');
         // パスワード編集
         Route::get('/password/edit', 'UserController@editPassword')->name('password.edit');
         // パスワード更新

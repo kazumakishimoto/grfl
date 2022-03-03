@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
@@ -110,8 +112,10 @@ class UserController extends Controller
     public function update(UserRequest $request, string $name)
     {
         $user = User::where('name', $name)->first();
+
         // UserPolicyのupdateメソッドでアクセス制限
         $this->authorize('update', $user);
+        $all_request = $request->all();
 
         // 画像アップロード
         if (request('avatar')) {
@@ -128,7 +132,7 @@ class UserController extends Controller
             }
         }
 
-        $user->fill($request->all())->save();
+        $user->fill($all_request)->save();
         return redirect()->route('users.show', ["name" => $user->name]);
     }
 
@@ -171,15 +175,17 @@ class UserController extends Controller
         ]);
     }
 
-    public function destroy(UserRequest $request, string $name)
+    public function destroy(string $name)
     {
         $user = User::where('name', $name)->first();
         // UserPolicyのdeleteメソッドでアクセス制限
         $this->authorize('delete', $user);
         $user->delete();
+        Auth::logout();
+        return redirect()->route('articles.index');
 
-        return $this->resigned($request, $user)
-            ?: redirect($this->redirectPath());
+        // return $this->resigned($request, $user)
+        //     ?: redirect($this->redirectPath());
         // return redirect()->route('articles.index');
     }
 }
