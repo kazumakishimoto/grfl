@@ -16,7 +16,7 @@
           </a>
           <div class="dropdown-menu dropdown-menu-right">
             <a class="dropdown-item" href="{{ route("users.edit", ['name' => $user->name]) }}">
-              <i class="fas fa-pen mr-1"></i>プロフィールを更新する
+              <i class="fas fa-pen mr-1"></i>プロフィールを編集する
             </a>
           </div>
         </div>

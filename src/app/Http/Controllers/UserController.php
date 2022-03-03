@@ -111,11 +111,8 @@ class UserController extends Controller
 
     public function update(UserRequest $request, string $name)
     {
+        $validated = $request->validated();
         $user = User::where('name', $name)->first();
-
-        // UserPolicyのupdateメソッドでアクセス制限
-        $this->authorize('update', $user);
-        $all_request = $request->all();
 
         // 画像アップロード
         if (request('avatar')) {
@@ -132,7 +129,12 @@ class UserController extends Controller
             }
         }
 
-        $user->fill($all_request)->save();
+        // UserPolicyのupdateメソッドでアクセス制限
+        $this->authorize('update', $user);
+
+        // バリデーションにかけた値だけをDBに保存
+        $user->fill($validated)->save();
+
         return redirect()->route('users.show', ["name" => $user->name]);
     }
 

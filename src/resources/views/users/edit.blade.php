@@ -10,6 +10,16 @@
                     <h2 class='h4 card-title text-center mt-5 mb-1'><span class="bg cyan darken-3 text-white py-3 px-4 rounded-pill">プロフィール編集</span></h2>
                     <p class="mt-4">Profile Edit</p>
                 </div>
+                @if (Auth::id() == config('user.guest_user.id'))
+                <div class="card-body text-center">
+                    <p class="text-danger">
+                        <b>※ゲストユーザーは、以下を編集できません。</b><br>
+                        ・アイコン画像<br>
+                        ・ユーザー名<br>
+                        ・メールアドレス<br>
+                    </p>
+                </div>
+                @endif
                 @include('error_card_list')
                 <div class="mt-2">
                         <div class="card-body align-items-center text-center mt-2 mb-3">
@@ -17,13 +27,19 @@
                                 @method('PATCH')
                                 @csrf
                                 {{-- 編集フォーム --}}
+                                @if(Auth::id() != config('user.guest_user.id'))
                                 <label for="image">
                                     <img src="{{ $user->image }}" id="img" class="img-fuild rounded-circle" width="80" height="80">
                                     <input type="file" id="image" name="image" onchange="previewImage(this);" class="d-none">
                                 </label>
+                                @endif
                                 <div class="md-form col-lg-6 col-md-7 col-sm-8 col-xs-10 mx-auto">
                                     <label for="name">ユーザー名</label>
+                                    @if (Auth::id() == config('user.guest_user.id'))
+                                    <input type="text" class="form-control" id="name" name="name" required value="{{ $user->name }}" readonly>
+                                    @else
                                     <input type="text" class="form-control" id="name" name="name" required value="{{ $user->name ?? old('name') }}">
+                                    @endif
                                     <small>3〜15文字で入力してください</small>
                                 </div>
                                 <div class="md-form col-lg-6 col-md-7 col-sm-8 col-xs-10 mx-auto">
@@ -36,7 +52,11 @@
                                 </div>
                                 <div class="md-form col-lg-6 col-md-7 col-sm-8 col-xs-10 mx-auto">
                                     <label for="email">メールアドレス</label>
+                                    @if (Auth::id() == config('user.guest_user.id'))
+                                    <input type="text" class="form-control" id="email" name="email" required value="{{ $user->email }}" readonly>
+                                    @else
                                     <input type="text" class="form-control" id="email" name="email" required value="{{ $user->email ?? old('email') }}">
+                                    @endif
                                 </div>
                                 <button type="submit" class="btn btn-block cyan darken-3 text-white col-lg-6 col-md-7 col-sm-8 col-xs-10 mx-auto mt-5 waves-effect">
                                     更新する
@@ -49,6 +69,7 @@
                             </form>
 
                             {{-- ユーザー消去 --}}
+                            @if(Auth::id() != config('user.guest_user.id'))
                             <div class="mx-auto">
                                 <a class="btn btn-danger col-lg-6 col-md-7 col-sm-8 col-xs-10 mx-auto mt-3 mb-5 waves-effect" data-toggle="modal" data-target="#modal-delete-{{ $user->id }}">退会する</a>
                             </div>
@@ -72,6 +93,7 @@
                                     </div>
                                 </div>
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>

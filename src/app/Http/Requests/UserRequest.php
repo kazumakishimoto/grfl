@@ -26,13 +26,14 @@ class UserRequest extends FormRequest
     public function rules()
     {
         // ゲストユーザーログイン時に、ユーザー名とメールアドレスを変更できないよう対策
-        // if (Auth::id() == config('user.guest_user.id')) {
-        // return [
-        //     'age' => ['numeric', 'min:1', 'max:100', 'nullable'],
-        //     'avatar'     => ['file', 'mimes:jpeg,png,jpg,bmb', 'max:2048'],
-        //     'introduction' => ['text', 'max:200', 'nullable'],
-        //     ];
-        // }
+        if (Auth::id() == config('user.guest_user.id')) {
+        return [
+            'age' => ['numeric', 'min:1', 'max:100', 'nullable'],
+            'avatar' => ['image', 'nullable'],
+            // 'avatar'     => ['file', 'mimes:jpeg,png,jpg,bmb', 'max:2048'],
+            'introduction' => ['max:200', 'nullable'],
+            ];
+        }
 
         return [
             'name' => ['required','regex:/^(?!.*\s).+$/u', 'regex:/^(?!.*\/).*$/u', 'max:15', Rule::unique('users')->ignore(Auth::id())],
@@ -54,6 +55,13 @@ class UserRequest extends FormRequest
             'avatar' => 'プロフィール画像',
             'email' => 'メールアドレス',
             // 'password' => 'パスワード',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.regex' => ':attributeに「/」と半角スペースは使用できません。'
         ];
     }
 }
