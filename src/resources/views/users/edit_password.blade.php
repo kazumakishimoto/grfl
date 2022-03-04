@@ -12,7 +12,7 @@
                     <h2 class='h4 card-title text-center mt-5 mb-1'><span class="bg cyan darken-3 text-white py-3 px-4 rounded-pill">パスワード変更</span></h2>
                     <p class="mt-4">Password Edit</p>
 
-                    {{-- @include('error_card_list') --}}
+                    @include('error_card_list')
 
                     <div class="card-text mt-5">
                         <form method="POST" action="{{ route('users.password.update', ['name' => $user->name]) }}">

@@ -138,10 +138,24 @@ class UserController extends Controller
         return redirect()->route('users.show', ["name" => $user->name]);
     }
 
+    public function destroy(string $name)
+    {
+        $user = User::where('name', $name)->first();
+        // UserPolicyのdeleteメソッドでアクセス制限
+        $this->authorize('delete', $user);
+        $user->delete();
+        Auth::logout();
+
+        return redirect()->route('articles.index');
+    }
+
     //パスワード編集画面
     public function editPassword(string $name)
     {
         $user = User::where('name', $name)->first();
+
+        // UserPolicyのupdateメソッドでアクセス制限
+        $this->authorize('update', $user);
 
         return view('users.edit_password', ['user' => $user]);
     }
@@ -150,6 +164,9 @@ class UserController extends Controller
     public function updatePassword(Request $request, string $name)
     {
         $user = User::where('name', $name)->first();
+
+        // UserPolicyのupdateメソッドでアクセス制限
+        $this->authorize('update', $user);
 
         //現在のパスワードが合っているかチェック
         if (!(Hash::check($request->current_password, $user->password))) {
@@ -167,6 +184,7 @@ class UserController extends Controller
 
         $user->password = Hash::make($request->password);
         $user->save();
+
         return redirect()->route('users.show', ["name" => $user->name]);
     }
 
@@ -175,19 +193,5 @@ class UserController extends Controller
         return Validator::make($data, [
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
-    }
-
-    public function destroy(string $name)
-    {
-        $user = User::where('name', $name)->first();
-        // UserPolicyのdeleteメソッドでアクセス制限
-        $this->authorize('delete', $user);
-        $user->delete();
-        Auth::logout();
-        return redirect()->route('articles.index');
-
-        // return $this->resigned($request, $user)
-        //     ?: redirect($this->redirectPath());
-        // return redirect()->route('articles.index');
     }
 }
