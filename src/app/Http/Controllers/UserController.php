@@ -116,15 +116,16 @@ class UserController extends Controller
 
         // 画像アップロード
         if (request('avatar')) {
-            $image = $request->file('avatar');
+            $avatar = $request->file('avatar');
             if (app()->isLocal() || app()->runningUnitTests()) {
                 // 開発環境
-                $path = $image->storeAs('public/images', $user->id . '.jpg');
-                $user->avatar = Storage::url($path);
-                // $request->file('avatar')->storeAs('public/images', $image);
+                $file_name = $request->file('avatar')->getClientOriginalName();
+                Storage::disk('public')->putFileAs('avatar', $request->file('avatar'), $file_name);
+                // $path = $avatar->storeAs('public/images', $user->id . '.jpg');
+                // $user->avatar = Storage::url($path);
             } else {
                 // 本番環境
-                $path = Storage::disk('s3')->put('/', $image, 'public');
+                $path = Storage::disk('s3')->put('/', $avatar, 'public');
                 $user->avatar = Storage::disk('s3')->url($path);
             }
         }

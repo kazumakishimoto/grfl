@@ -4,7 +4,7 @@
       <a href="{{ route('users.show', ['name' => $user->name]) }}" class="text-dark">
         <i class="fas fa-user-circle fa-3x"></i>
         {{-- <img src="{{ $user->avatar }}" class="img-fuild rounded-circle" width="60" height="60"> --}}
-        {{-- <img src="{{ asset('storage/images/'.$user->avatar) }}" class="img-fuild rounded-circle" width="60" height="60"> --}}
+        {{-- <img src="{{ asset('storage/avatar/'.$user->avatar) }}" class="img-fuild rounded-circle" width="60" height="60"> --}}
       </a>
       @auth
       @if( Auth::id() === $user->id )

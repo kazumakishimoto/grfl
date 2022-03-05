@@ -28,9 +28,9 @@
                                 @csrf
                                 {{-- 編集フォーム --}}
                                 @if(Auth::id() != config('user.guest_user.id'))
-                                <label for="image">
-                                    <img src="{{ $user->image }}" id="img" class="img-fuild rounded-circle" width="80" height="80">
-                                    <input type="file" id="image" name="image" onchange="previewImage(this);" class="d-none">
+                                <label for="avatar">
+                                    <img src="{{ asset('storage/avatar/'.$user->avatar) }}" id="img" class="img-fuild rounded-circle" width="80" height="80">
+                                    <input type="file" id="avatar" name="avatar" onchange="previewImage(this);" class="d-none">
                                 </label>
                                 @endif
                                 <div class="md-form col-lg-6 col-md-7 col-sm-8 col-xs-10 mx-auto">
