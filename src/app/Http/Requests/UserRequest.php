@@ -25,12 +25,23 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-        $uniqueName = 'unique:users,name,' . Auth::id() . ',id';
-        $uniqueEmail = 'unique:users,email,' . Auth::id() . ',id';
+        // ゲストユーザーログイン時に、ユーザー名とメールアドレスを変更できないよう対策
+        if (Auth::id() == config('user.guest_user.id')) {
         return [
-            'name' => ['required', 'string', 'min:3', 'max:15', $uniqueName],
             'age' => ['numeric', 'min:1', 'max:100', 'nullable'],
-            'email' => ['required', 'string', 'email', 'max:255', $uniqueEmail],
+            'avatar' => ['image', 'nullable'],
+            // 'avatar'     => ['file', 'mimes:jpeg,png,jpg,bmb', 'max:2048'],
+            'introduction' => ['max:200', 'nullable'],
+            ];
+        }
+
+        return [
+            'name' => ['required','regex:/^(?!.*\s).+$/u', 'regex:/^(?!.*\/).*$/u', 'max:15', Rule::unique('users')->ignore(Auth::id())],
+            'age' => ['numeric', 'min:1', 'max:100', 'nullable'],
+            'introduction' => ['max:200', 'nullable'],
+            'avatar' => ['image', 'nullable'],
+            // 'avatar'     => ['file', 'mimes:jpeg,png,jpg,bmb', 'max:2048'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore(Auth::id())],
             // 'password' => ['required', 'string', 'min:8', 'confirmed'],
         ];
     }
@@ -40,8 +51,17 @@ class UserRequest extends FormRequest
         return [
             'name' => 'ユーザー名',
             'age' => '年齢',
+            'introduction' => '自己紹介',
+            'avatar' => 'プロフィール画像',
             'email' => 'メールアドレス',
             // 'password' => 'パスワード',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.regex' => ':attributeに「/」と半角スペースは使用できません。'
         ];
     }
 }

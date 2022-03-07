@@ -3,7 +3,26 @@
     <div class="d-flex flex-row">
       <a href="{{ route('users.show', ['name' => $user->name]) }}" class="text-dark">
         <i class="fas fa-user-circle fa-3x"></i>
+        {{-- <img src="{{ $user->avatar }}" class="img-fuild rounded-circle" width="60" height="60"> --}}
+        {{-- <img src="{{ asset('storage/avatar/'.$user->avatar) }}" class="img-fuild rounded-circle" width="60" height="60"> --}}
       </a>
+      @auth
+      @if( Auth::id() === $user->id )
+      <!-- dropdown -->
+      <div class="ml-auto card-text">
+        <div class="dropdown">
+          <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-ellipsis-v"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <a class="dropdown-item" href="{{ route("users.edit", ['name' => $user->name]) }}">
+              <i class="fas fa-pen mr-1"></i>プロフィールを編集する
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- dropdown -->
+      @endif
       @if( Auth::id() !== $user->id )
         <follow-button
           class="ml-auto"
@@ -13,6 +32,7 @@
         >
         </follow-button>
       @endif
+      @endauth
     </div>
     <h2 class="h5 card-title m-0">
       <a href="{{ route('users.show', ['name' => $user->name]) }}" class="text-dark">

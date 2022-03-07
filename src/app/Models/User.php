@@ -4,17 +4,18 @@ namespace App\Models;
 
 use App\Mail\BareMail;
 use App\Notifications\PasswordResetNotification;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\SoftDeletes;
+// use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
     use Notifiable;
-    use SoftDeletes;
+    // use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.

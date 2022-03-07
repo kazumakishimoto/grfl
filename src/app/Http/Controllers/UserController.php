@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
@@ -13,43 +15,6 @@ use App\Models\Article;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show(string $name)
     {
         $user = User::where('name', $name)->first()
@@ -137,13 +102,6 @@ class UserController extends Controller
         return ['name' => $name];
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    //プロフィール編集画面
     public function edit(string $name)
     {
         $user = User::where('name', $name)->first();
@@ -151,33 +109,54 @@ class UserController extends Controller
         return view('users.edit', ['user' => $user]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    //プロフィール編集処理
     public function update(UserRequest $request, string $name)
     {
+        $validated = $request->validated();
         $user = User::where('name', $name)->first();
-        $all_request = $request->all();
 
-        // if (isset($all_request['avatar'])) {
-        //     $avatar = $request->file('avatar');
-        //     $upload_info = Storage::disk('s3')->putFile('avatar', $avatar, 'public');
-        //     $all_request['avatar'] = Storage::disk('s3')->url($upload_info);
-        //     $user->fill($all_request)->save();
-        // }
+        // 画像アップロード
+        if (request('avatar')) {
+            $avatar = $request->file('avatar');
+            if (app()->isLocal() || app()->runningUnitTests()) {
+                // 開発環境
+                $file_name = $request->file('avatar')->getClientOriginalName();
+                Storage::disk('public')->putFileAs('avatar', $request->file('avatar'), $file_name);
+                // $path = $avatar->storeAs('public/images', $user->id . '.jpg');
+                // $user->avatar = Storage::url($path);
+            } else {
+                // 本番環境
+                $path = Storage::disk('s3')->put('/', $avatar, 'public');
+                $user->avatar = Storage::disk('s3')->url($path);
+            }
+        }
+
+        // UserPolicyのupdateメソッドでアクセス制限
+        $this->authorize('update', $user);
+
+        // バリデーションにかけた値だけをDBに保存
+        $user->fill($validated)->save();
 
         return redirect()->route('users.show', ["name" => $user->name]);
+    }
+
+    public function destroy(string $name)
+    {
+        $user = User::where('name', $name)->first();
+        // UserPolicyのdeleteメソッドでアクセス制限
+        $this->authorize('delete', $user);
+        $user->delete();
+        Auth::logout();
+
+        return redirect()->route('articles.index');
     }
 
     //パスワード編集画面
     public function editPassword(string $name)
     {
         $user = User::where('name', $name)->first();
+
+        // UserPolicyのupdateメソッドでアクセス制限
+        $this->authorize('update', $user);
 
         return view('users.edit_password', ['user' => $user]);
     }
@@ -186,6 +165,9 @@ class UserController extends Controller
     public function updatePassword(Request $request, string $name)
     {
         $user = User::where('name', $name)->first();
+
+        // UserPolicyのupdateメソッドでアクセス制限
+        $this->authorize('update', $user);
 
         //現在のパスワードが合っているかチェック
         if (!(Hash::check($request->current_password, $user->password))) {
@@ -203,6 +185,7 @@ class UserController extends Controller
 
         $user->password = Hash::make($request->password);
         $user->save();
+
         return redirect()->route('users.show', ["name" => $user->name]);
     }
 
@@ -211,25 +194,5 @@ class UserController extends Controller
         return Validator::make($data, [
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(string $name)
-    {
-        DB::transaction(function () use ($name) {
-            $user = $this->userService->delete($name);
-
-            // UserPolicyのdeleteメソッドでアクセス制限
-            $this->authorize('delete', $user);
-        });
-
-        toastr()->success('退会処理が完了しました');
-
-        return redirect()->route('articles.index');
     }
 }
