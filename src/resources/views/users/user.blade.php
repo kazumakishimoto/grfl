@@ -1,5 +1,5 @@
 <div class="card mt-3">
-  <div class="card-body">
+  <div class="card-body pb-0">
     <div class="d-flex flex-row">
       <a href="{{ route('users.show', ['name' => $user->name]) }}" class="text-dark">
         <i class="fas fa-user-circle fa-3x"></i>
@@ -39,6 +39,9 @@
         {{ $user->name }}
       </a>
     </h2>
+    <div class="card-text">
+      {{ $user->introduction }}
+    </div>
   </div>
   <div class="card-body">
     <div class="card-text">
