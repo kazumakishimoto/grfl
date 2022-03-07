@@ -1,10 +1,12 @@
 @foreach ($comments as $comment)
 <div class="card mt-3">
-  <div class="card-body d-flex flex-row">
-    <i class="fas fa-user-circle fa-3x mr-1"></i>
+    <div class="card-body d-flex flex-row">
+        <a href="{{ route('users.show', ['name' => $comment->user->name]) }}" class="text-dark"><i class="fas fa-user-circle fa-3x mr-1"></i></a>
     <div>
-      <div class="font-weight-bold">{{ $comment->user->name }}</div>
-      <div class="font-weight-lighter">{{ $comment->created_at->format('Y/m/d H:i') }}</div>
+        <div class="font-weight-bold">
+            <a href="{{ route('users.show', ['name' => $comment->user->name]) }}" class="text-dark">{{ $comment->user->name }}</a>
+        </div>
+        <div class="font-weight-lighter">{{ $comment->created_at->format('Y/m/d H:i') }}</div>
     </div>
 
   @if( Auth::id() === $comment->user_id )
