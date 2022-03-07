@@ -99,8 +99,9 @@ class ArticleController extends Controller
     public function show(Article $article)
     {
         $comments = $article->comments()
-            ->orderBy('created_at', 'desc')
-            ->paginate(5);
+        ->with('user')
+        ->orderBy('created_at', 'desc')
+        ->paginate(5);
 
         return view('articles.show', [
             'article'  => $article,
