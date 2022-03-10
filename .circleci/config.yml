@@ -6,17 +6,17 @@ jobs:
     steps:
       - checkout
       - run:
-      working_directory: src
-      command: sudo composer self-update --2
+          working_directory: src
+          command: sudo composer self-update --2
       - run:
-      working_directory: src
-      command: composer install -n --prefer-dist
+          working_directory: src
+          command: composer install -n --prefer-dist
       - run:
-      working_directory: src
-      command: npm ci
+          working_directory: src
+          command: npm ci
       - run:
-      working_directory: src
-      command: npm run dev
+          working_directory: src
+          command: npm run dev
       - run:
           name: php test
           working_directory: src
