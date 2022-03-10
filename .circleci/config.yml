@@ -42,10 +42,10 @@ jobs:
           working_directory: src
           name: Run npm
           command: npm run dev
-      - run:
-          working_directory: src
-          name: Migration & Seeding
-          command: php artisan migrate --seed
+      # - run:
+      #     working_directory: src
+      #     name: Migration & Seeding
+      #     command: php artisan migrate --seed
       - run:
           working_directory: src
           name: php test
