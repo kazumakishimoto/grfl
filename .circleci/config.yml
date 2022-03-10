@@ -21,6 +21,7 @@ jobs:
           key: npm-v1-{{ checksum "src/package-lock.json" }}
       - run:
           working_directory: src
+          name: npm ci
           command: |
               if [ ! -d node_modules ]; then
                 npm ci
@@ -33,6 +34,6 @@ jobs:
           working_directory: src
           command: npm run dev
       - run:
-          name: php test
           working_directory: src
+          name: php test
           command: vendor/bin/phpunit
