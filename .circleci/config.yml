@@ -3,19 +3,6 @@ jobs:
   build:
     docker:
       - image: circleci/php:7.4-node-browsers
-        environment:
-          - APP_DEBUG: true
-          - APP_ENV: testing
-          - APP_KEY: base64:oQbVvWs3tHsouVVGIhue/ZQX3p7OuQ8Z4s6oDOhXK7I=
-          - DB_CONNECTION: circle_testing
-          # - DB_DATABASE: db_test
-          # - DB_USERNAME: root
-      - image: circleci/mysql:5.7
-        environment:
-          - MYSQL_ALLOW_EMPTY_PASSWORD: true
-          # - MYSQL_DATABASE: db_test
-    working_directory: ~/repo
-
     steps:
       - checkout
       - run:
@@ -47,10 +34,6 @@ jobs:
           working_directory: src
           name: Run npm
           command: npm run dev
-      # - run:
-      #     working_directory: src
-      #     name: Migration & Seeding
-      #     command: php artisan migrate --seed
       - run:
           working_directory: src
           name: php test
