@@ -3,8 +3,26 @@ jobs:
   build:
     docker:
       - image: circleci/php:7.4-node-browsers
+      - image: circleci/mysql:5.7
+    environment:
+      - APP_DEBUG: true
+      - APP_ENV: testing
+      - APP_KEY: base64:oQbVvWs3tHsouVVGIhue/ZQX3p7OuQ8Z4s6oDOhXK7I=
+      - DB_CONNECTION: circle_testing
+      - MYSQL_ALLOW_EMPTY_PASSWORD: true
+
+    working_directory: ~/repo
+
     steps:
       - checkout
+
+      # Install PHP Extension
+      - run:
+          working_directory: src
+          name: Install PHP Extensions
+          command: sudo docker-php-ext-install pdo_mysql
+
+      # composer
       - run:
           working_directory: src
           command: sudo composer self-update --2
@@ -19,6 +37,8 @@ jobs:
             - src/vendor
       - restore_cache:
           key: npm-v1-{{ checksum "src/package-lock.json" }}
+
+      # npm
       - run:
           working_directory: src
           name: npm ci
@@ -34,7 +54,15 @@ jobs:
           working_directory: src
           name: Run npm
           command: npm run dev
+
+      # run seeding
+      # - run: php artisan migrate
+      # - run: php artisan db:seed
+
+      # run tests!
       - run:
           working_directory: src
           name: php test
           command: vendor/bin/phpunit
+
+      #heroku deploy
