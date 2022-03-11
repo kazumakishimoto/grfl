@@ -62,7 +62,7 @@ jobs:
           command: php artisan migrate
       - run:
           working_directory: src
-          name: migration
+          name: seeder
           command: php artisan db:seed
 
       # run tests!
