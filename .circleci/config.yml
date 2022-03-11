@@ -10,7 +10,7 @@ jobs:
       - APP_KEY: base64:oQbVvWs3tHsouVVGIhue/ZQX3p7OuQ8Z4s6oDOhXK7I=
       - DB_CONNECTION: circle_testing
       - MYSQL_ALLOW_EMPTY_PASSWORD: true
-    working_directory: ~/repo
+    working_directory: src
     steps:
       - checkout
       - run:
