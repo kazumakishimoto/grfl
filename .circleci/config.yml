@@ -3,21 +3,72 @@ jobs:
   build:
     docker:
       - image: circleci/php:7.4-node-browsers
+      - image: circleci/mysql:5.7
+    environment:
+      - APP_DEBUG: true
+      - APP_ENV: testing
+      - APP_KEY: base64:oQbVvWs3tHsouVVGIhue/ZQX3p7OuQ8Z4s6oDOhXK7I=
+      - DB_CONNECTION: circle_testing
+      - MYSQL_ALLOW_EMPTY_PASSWORD: true
+
+    working_directory: ~/repo
+
     steps:
       - checkout
+
+      # Install PHP Extension
+      - run:
+          working_directory: src
+          name: Install PHP Extensions
+          command: sudo docker-php-ext-install pdo_mysql
+
+      # composer
       - run:
           working_directory: src
           command: sudo composer self-update --2
+      - restore_cache:
+          key: composer-v1-{{ checksum "src/composer.lock" }}
       - run:
           working_directory: src
           command: composer install -n --prefer-dist
+      - save_cache:
+          key: composer-v1-{{ checksum "src/composer.lock" }}
+          paths:
+            - src/vendor
+      - restore_cache:
+          key: npm-v1-{{ checksum "src/package-lock.json" }}
+
+      # npm
       - run:
           working_directory: src
-          command: npm ci
+          name: npm ci
+          command: |
+              if [ ! -d node_modules ]; then
+                npm ci
+              fi
+      - save_cache:
+          key: npm-v1-{{ checksum "src/package-lock.json" }}
+          paths:
+            - src/node_modules
       - run:
           working_directory: src
+          name: Run npm
           command: npm run dev
+
+      # run seeding
       - run:
-          name: php test
           working_directory: src
+          name: migration
+          command: php artisan migrate
+      - run:
+          working_directory: src
+          name: seeder
+          command: php artisan db:seed
+
+      # run tests!
+      - run:
+          working_directory: src
+          name: php test
           command: vendor/bin/phpunit
+
+      #heroku deploy
