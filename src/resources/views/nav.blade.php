@@ -4,6 +4,13 @@
 
   <ul class="navbar-nav ml-auto">
 
+    <li class="nav-item">
+        <form method="GET" action="{{ route('articles.search') }}" class="d-flex">
+            <input class="form-control" name="search" type="text" placeholder="キーワードを入力" aria-label="Search">
+            <button class="btn btn-outline-success m-0" type="submit">検索</button>
+        </form>
+    </li>
+
     @guest
     <li class="nav-item">
       <a class="nav-link" href="{{ route('register') }}">ユーザー登録</a>

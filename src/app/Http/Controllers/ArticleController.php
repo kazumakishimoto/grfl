@@ -129,4 +129,22 @@ class ArticleController extends Controller
             'countLikes' => $article->count_likes,
         ];
     }
+
+    // 検索機能
+    public function search(Request $request) {
+        $search = $request->input('search');
+        $query = Article::query();
+
+        if (!empty($search)) {
+            $query->where('title', 'LIKE', "%{$search}%")
+            ->orWhere('body', 'LIKE', "%{$search}%");
+        }
+
+        $articles = $query
+        ->orderBy('created_at', 'desc')
+        ->with(['user', 'likes', 'tags'])
+        ->paginate(10);
+
+        return view('articles.index', ['articles' => $articles]);
+    }
 }
