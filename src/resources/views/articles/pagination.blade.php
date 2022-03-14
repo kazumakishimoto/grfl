@@ -1,3 +1,3 @@
 <div class="paginate">
-    {{ $articles->links() }}
+    {{ $articles->appends(request()->input())->links() }}
 </div>
