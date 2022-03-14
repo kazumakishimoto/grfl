@@ -6,8 +6,8 @@
 
     <li class="nav-item">
         <form method="GET" action="{{ route('articles.search') }}" class="d-flex">
-            <input class="form-control" name="search" type="text" placeholder="キーワードを入力" aria-label="Search">
-            <button class="btn btn-outline-success m-0" type="submit">検索</button>
+            <input class="form-control" name="search" type="text" placeholder="検索..." aria-label="Search">
+            <button class="input-group-text border-0" type="submit"><i class="fas fa-search"></i></button>
         </form>
     </li>
 
