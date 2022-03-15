@@ -10,4 +10,5 @@
     @endforeach
     @include('articles.pagination')
   </div>
+  @include('footer')
 @endsection
