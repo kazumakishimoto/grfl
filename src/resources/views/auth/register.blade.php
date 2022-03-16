@@ -63,12 +63,10 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                                <a href="{{ route('login.{provider}', ['provider' => 'google']) }}" class="btn btn-block btn-danger">
-                                    <i class="fab fa-google mr-1"></i>Googleで登録
-                                </a>
+                                <div class="mb-4">
+                                    <button type="submit" class="btn btn-primary">{{ __('Register') }}</button>
+                                </div>
+                                <a href="{{ route('login.{provider}', ['provider' => 'google']) }}" class="btn btn-block btn-danger"><i class="fab fa-google mr-1"></i>Googleで登録</a>
                             </div>
                         </div>
                     </form>
