@@ -2,14 +2,14 @@
     <div class="container">
         <nav class="navbar-expand navbar-dark">
             <ul class="navbar-nav d-flex flex-column flex-md-row justify-content-center p-3">
-                <li class=""><a class="nav-link" href="/">Home</a></li>
-                <li class=""><a class="nav-link" href="/">利用規約</a></li>
-                <li class=""><a class="nav-link" href="/">プライバシーポリシー</a></li>
-                <li class=""><a class="nav-link" href="/">Contact</a></li>
+                <li><a class="nav-link" href="/">Home</a></li>
+                <li><a class="nav-link" href="{{ route('terms') }}">利用規約</a></li>
+                <li><a class="nav-link" href="{{ route('privacy') }}">プライバシーポリシー</a></li>
+                {{-- <li><a class="nav-link" href="{{ route('contact.index') }}">Contact</a></li> --}}
             </ul>
         </nav>
         <div class="text-center p-3">
-            <a class="" href="/">grfl
+            <a href="/">grfl
                 {{-- <img src="{{ asset('images/grfl.png') }}"> --}}
             </a>
         </div>

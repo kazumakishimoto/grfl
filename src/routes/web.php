@@ -27,6 +27,11 @@ Route::prefix('register')->name('register.')->group(function () {
     Route::post('/{provider}', 'Auth\RegisterController@registerProviderUser')->name('{provider}');
 });
 
+# Home
+Route::get('/about', 'HomeController@about')->name('about');
+Route::get('/privacy', 'HomeController@privacy')->name('privacy');
+Route::get('/terms', 'HomeController@terms')->name('terms');
+
 # article
 Route::get('/', 'ArticleController@index')->name('articles.index');
 Route::resource('/articles', 'ArticleController')->except(['index', 'show'])->middleware('auth');
