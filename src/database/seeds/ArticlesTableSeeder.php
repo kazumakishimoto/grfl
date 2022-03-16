@@ -18,7 +18,7 @@ class ArticlesTableSeeder extends Seeder
             $article = Article::create([
                 'user_id'    => $i,
                 'title'       => 'test_title' . $i,
-                'body'       => 'test_text' . $i,
+                'body'       => 'test_body' . $i,
                 'created_at' => now(),
                 'updated_at' => now()
             ]);

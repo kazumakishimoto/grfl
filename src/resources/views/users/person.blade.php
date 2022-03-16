@@ -17,5 +17,8 @@
     <h2 class="h5 card-title m-0">
       <a href="{{ route('users.show', ['name' => $person->name]) }}" class="text-dark">{{ $person->name }}</a>
     </h2>
+    <div class="card-text">
+      {{ $user->introduction }}
+    </div>
   </div>
 </div>
