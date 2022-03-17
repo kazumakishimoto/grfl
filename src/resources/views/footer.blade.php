@@ -5,7 +5,7 @@
                 <li><a class="nav-link" href="/">Home</a></li>
                 <li><a class="nav-link" href="{{ route('terms') }}">利用規約</a></li>
                 <li><a class="nav-link" href="{{ route('privacy') }}">プライバシーポリシー</a></li>
-                {{-- <li><a class="nav-link" href="{{ route('contact.index') }}">Contact</a></li> --}}
+                <li><a class="nav-link" href="{{ route('contact.index') }}">Contact</a></li>
             </ul>
         </nav>
         <div class="text-center p-3">

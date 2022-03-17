@@ -27,6 +27,14 @@ Route::prefix('register')->name('register.')->group(function () {
     Route::post('/{provider}', 'Auth\RegisterController@registerProviderUser')->name('{provider}');
 });
 
+# Contact
+// 入力ページ
+Route::get('/contact', 'ContactController@index')->name('contact.index');
+// 確認ページ
+Route::post('/contact/confirm', 'ContactController@confirm')->name('contact.confirm');
+// 送信完了ページ
+Route::post('/contact/thanks', 'ContactController@send')->name('contact.send');
+
 # Home
 Route::get('/about', 'HomeController@about')->name('about');
 Route::get('/privacy', 'HomeController@privacy')->name('privacy');
