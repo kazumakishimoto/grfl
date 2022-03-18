@@ -66,7 +66,7 @@ class LoginController extends Controller
     public function handleProviderCallback(Request $request, string $provider)
     {
         //認証結果の受け取り
-        $providerUser = Socialite::driver($provider)->stateless()->user();
+        $providerUser = Socialite::driver($provider)->user();
 
         //Google
         if ($provider === 'google') {
