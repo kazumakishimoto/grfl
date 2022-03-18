@@ -12,4 +12,5 @@
     @include('comments.card')
     @include('comments.pagination')
   </div>
+  @include('footer')
 @endsection

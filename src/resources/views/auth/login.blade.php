@@ -53,13 +53,12 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-                                <button class="btn btn-success">
-                                    <a href="{{ route('login.guest') }}" class="text-white">ゲストログイン
-                                    </a>
-                                </button>
+                                <div class="mb-4">
+                                    <button type="submit" class="btn btn-primary">{{ __('Login') }}</button>
+                                    <button class="btn btn-success">
+                                        <a href="{{ route('login.guest') }}" class="text-white">ゲストログイン</a>
+                                    </button>
+                                </div>
                                 <a href="{{ route('login.{provider}', ['provider' => 'google']) }}" class="btn btn-block btn-danger mb-4 col-lg-8 col-md-9 col-sm-10 col-xs-12">
                                     <i class="fab fa-google mr-1"></i>Googleでログイン
                                 </a>

@@ -12,4 +12,5 @@
     @endforeach
     @include('users.pagination')
   </div>
+  @include('footer')
 @endsection

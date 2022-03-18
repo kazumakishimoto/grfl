@@ -12,4 +12,5 @@
     @endforeach
     {{ $followers->links('pagination::default') }}
   </div>
+  @include('footer')
 @endsection
