@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-dark sunny-morning-gradient">
     <div class="container">
-        <a class="navbar-brand" href="/">grfl</a>
+        <a class="navbar-brand" href="/">circle_test</a>
 
         <!-- スマホやタブレットで表示した時のメニューボタン -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
