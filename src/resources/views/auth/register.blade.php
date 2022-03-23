@@ -62,6 +62,9 @@
                                 <div>
                                     <a href="{{ route('login.{provider}', ['provider' => 'google']) }}" class="btn btn-block btn-danger"><i class="fab fa-google mr-1"></i>Googleで登録</a>
                                 </div>
+                                <div>
+                                    <a href="{{ route('login.{provider}', ['provider' => 'twitter']) }}" class="btn btn-block btn-info"><i class="fab fa-twitter mr-1"></i>Twitterで登録</a>
+                                </div>
                             </div>
                         </div>
                     </form>

@@ -59,9 +59,9 @@
                                     <a href="{{ route('login.{provider}', ['provider' => 'google']) }}" class="btn btn-block btn-danger mb-4 col-lg-8 col-md-9 col-sm-10 col-xs-12">
                                     <i class="fab fa-google mr-1"></i>Googleでログイン
                                 </a>
-                                {{-- <a href="{{ route('login.{provider}', ['provider' => 'twitter']) }}" class="btn btn-block btn-info mb-4 col-lg-8 col-md-9 col-sm-10 col-xs-12">
+                                <a href="{{ route('login.{provider}', ['provider' => 'twitter']) }}" class="btn btn-block btn-info mb-4 col-lg-8 col-md-9 col-sm-10 col-xs-12">
                                     <i class="fab fa-twitter mr-1"></i>Twitterでログイン
-                                </a> --}}
+                                </a>
                                 </div>
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
