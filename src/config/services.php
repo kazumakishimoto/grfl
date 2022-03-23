@@ -40,7 +40,7 @@ return [
     'twitter' => [
         'client_id' => env('TWITTER_CLIENT_ID'),
         'client_secret' => env('TWITTER_CLIENT_SECRET'),
-        'redirect' => 'http://127.0.0.1/login/twitter/callback',
-        // 'redirect' => env('APP_URL') . '/login/twitter/callback',
+        'redirect' => env('APP_URL') . '/login/twitter/callback',
+        // 'redirect' => 'http://127.0.0.1/login/twitter/callback',
     ],
 ];
