@@ -1,6 +1,7 @@
 version: 2.1
-jobs:
-  build:
+
+executors:
+  laravel-circleci:
     docker:
       - image: circleci/php:7.4-node-browsers
       - image: circleci/mysql:5.7
@@ -10,71 +11,104 @@ jobs:
       - APP_KEY: base64:oQbVvWs3tHsouVVGIhue/ZQX3p7OuQ8Z4s6oDOhXK7I=
       - DB_CONNECTION: circle_testing
       - MYSQL_ALLOW_EMPTY_PASSWORD: true
-
     working_directory: ~/repo
 
+commands:
+  install-php-extensions:
     steps:
-      - checkout
-
-      # Install PHP Extension
       - run:
-          working_directory: src
-          name: Install PHP Extensions
+          name: Install PHP Exetensions
           command: sudo docker-php-ext-install pdo_mysql
-
-      # composer
-      - run:
           working_directory: src
-          command: sudo composer self-update --2
+  restore-cache-composer:
+    steps:
       - restore_cache:
-          key: composer-v1-{{ checksum "src/composer.lock" }}
+          key: v1-dependencies-{{ checksum "composer.json" }}
+  install-composer:
+    steps:
       - run:
-          working_directory: src
+          name: Install Composer
           command: composer install -n --prefer-dist
-      - save_cache:
-          key: composer-v1-{{ checksum "src/composer.lock" }}
-          paths:
-            - src/vendor
-      - restore_cache:
-          key: npm-v1-{{ checksum "src/package-lock.json" }}
-
-      # npm
-      - run:
           working_directory: src
-          name: npm ci
+  save-cache-composer:
+    steps:
+      - save_cache:
+          key: v1-dependencies-{{ checksum "composer.json" }}
+          paths:
+            - vendor
+  npm-ci:
+    steps:
+      - run:
+          name: npm CI
           command: |
-              if [ ! -d node_modules ]; then
-                npm ci
-              fi
-      - save_cache:
-          key: npm-v1-{{ checksum "src/package-lock.json" }}
-          paths:
-            - src/node_modules
-      - run:
+            if [ ! -d node_modules ]; then
+              npm ci
+            fi
           working_directory: src
+  restore-cache-npm:
+    steps:
+      - restore_cache:
+          key: npm-cache-{{ checksum "package-lock.json" }}
+  npm-run-dev:
+    steps:
+      - run:
           name: Run npm
           command: npm run dev
-
-      # run seeding
-      - run:
           working_directory: src
-          name: migration
-          command: php artisan migrate
+  save-cache-npm:
+    steps:
+      - save_cache:
+          key: npm-cache-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+  migration-seeding:
+    steps:
       - run:
+          name: Migration & Seeding
+          command: php artisan migrate --seed
           working_directory: src
-          name: seeder
-          command: php artisan db:seed
-
-      # run tests!
+  test-unittest:
+    steps:
       - run:
-          working_directory: src
-          name: php test
+          name: Run PHPUnit
           command: vendor/bin/phpunit
+          working_directory: src
 
-      #heroku deploy
-      - deploy:
+jobs:
+  build:
+    executor:
+      name: laravel-circleci
+    steps:
+      - checkout
+      - install-php-extensions
+      - restore-cache-composer
+      - install-composer
+      - save-cache-composer
+      - restore-cache-npm
+      - npm-ci
+      - save-cache-npm
+      - npm-run-dev
+      - migration-seeding
+      - test-unittest
+  deploy:
+    docker:
+      - image: circleci/php:7.4-node-browsers
+    steps:
+      - checkout
+      - run:
           name: heroku deploy
           command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
-            fi
+            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
+
+workflows:
+  version: 2
+  build_deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master
