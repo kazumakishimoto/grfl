@@ -37,17 +37,17 @@ URL:
 
 # 7.各テーブルについて
 | テーブル名 | 説明 |
-----|---- 
-| TD1 | TD2 |
-| TD1 | TD2 |
-| TD1 | TD2 |
-| TD1 | TD2 |
-| TD1 | TD2 |
-| TD1 | TD2 |
-| TD1 | TD2 |
-| TD1 | TD2 |
-| TD1 | TD2 |
-| TD1 | TD2 |
+----|----
+| Users | ユーザー情報 |
+| Articles | ユーザー投稿情報 |
+| Tags | ユーザー投稿のタグ情報 |
+| Article_tags | ArticlesとTagsの中間テーブル |
+| Likes | ユーザー投稿のいいね情報 |
+| Comments | ユーザー投稿のコメント情報 |
+| Follows | フォロー中/フォロワーのユーザー情報 |
+| Messages | ユーザー間のダイレクトメッセージ情報 |
+| Rooms | ダイレクトメッセージのルーム情報 |
+| Entries | MessagesとRoomsの中間テーブル |
 
 # 8.機能一覧
 
