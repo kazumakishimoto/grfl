@@ -20,14 +20,31 @@ URL:
 # 2.使用画面のイメージ
 
 # 3.使用技術
-
 ## フロントエンド
+- Vue.js 2.6.14
+- jQuery 3.4.1
+- HTML / CSS / Sass / MDBootstrap
 
 ## バックエンド
+- PHP	7.4.1
+- Laravel	6.20.43
+- Composer	2.0.14
+- PHPUnit	8.0
 
 ## インフラ
+- AWS(EB,VPC,EC2,RDS,Route53,ALB,ACM,SNS,Chatbot,IAM,CloudWatch,CloudFormation,CodeDeploy)
+- Heroku 7.59.4
+- Docker	20.10.11 / docker-compose	v2.2.1
+- CircleCI	2.1
+- nginx	1.18.0
+- MySQL	5.7.36
 
 ## その他使用ツール
+- Git	2.33.1 / GitHub
+- PHPMyAdmin
+- VScode
+- draw.io
+- MacBook Air	M1,2020(macOS	Monterey 12.3)
 
 # 4.画面遷移図
 
