@@ -47,10 +47,13 @@ URL:
 - MacBook Air	M1,2020(macOS	Monterey 12.3)
 
 # 4.画面遷移図
+![gui](https://user-images.githubusercontent.com/68370181/160355552-328990f2-bc02-4607-9a90-32a48eff4a85.png)
 
 # 5.AWS構成図
+![aws](https://user-images.githubusercontent.com/68370181/160355537-82139efe-be99-4bb2-8661-5af5e981a899.png)
 
 # 6.ER図
+![erd](https://user-images.githubusercontent.com/68370181/160355549-1aa3f92a-0f02-4f0b-87fe-a29fae9544f8.png)
 
 # 7.各テーブルについて
 | テーブル名 | 説明 |
