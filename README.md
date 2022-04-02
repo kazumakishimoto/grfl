@@ -1,12 +1,11 @@
-# grfl
+# 1.アプリ概要
 
 - 飲食店とインフルエンサーのマッチングアプリ
 
-URL:https://grfl.herokuapp.com/
+- URL:https://grfl.herokuapp.com/
+- GitHub:https://github.com/kazumakishimoto/grfl
 
 (画像)
-
-# 1.アプリ概要
 
 ## コンセプト
 - 集客に困っている飲食店が簡単にSNS広告を始められる
@@ -18,14 +17,13 @@ URL:https://grfl.herokuapp.com/
 - 具体的な広告内容や広告条件を投稿内容から確認できる
 - ダイレクトメッセージで連絡できる
 
-## 解説記事(Qiita)
-URL:
-
-# 2.使用画面のイメージ
+## 使用画面のイメージ
 
 (画像)
 
-# 3.使用技術
+
+# 2.使用技術
+
 ## フロントエンド
 - Vue.js 2.6.14
 - jQuery 3.4.1
@@ -46,36 +44,14 @@ URL:
 - MySQL	5.7.36
 
 ## その他使用ツール
-- Git	2.33.1 / GitHub
+- Git / GitHub
 - PHPMyAdmin
 - VScode
 - draw.io
 - MacBook Air	M1,2020(macOS	Monterey 12.3)
 
-# 4.画面遷移図
-![gui](https://user-images.githubusercontent.com/68370181/160355552-328990f2-bc02-4607-9a90-32a48eff4a85.png)
 
-# 5.AWS構成図
-![aws](https://user-images.githubusercontent.com/68370181/160355537-82139efe-be99-4bb2-8661-5af5e981a899.png)
-
-# 6.ER図
-![erd](https://user-images.githubusercontent.com/68370181/160355549-1aa3f92a-0f02-4f0b-87fe-a29fae9544f8.png)
-
-# 7.各テーブルについて
-| テーブル名 | 説明 |
-----|----
-| Users | ユーザー情報 |
-| Articles | ユーザー投稿情報 |
-| Tags | ユーザー投稿のタグ情報 |
-| Article_tags | ArticlesとTagsの中間テーブル |
-| Likes | ユーザー投稿のいいね情報 |
-| Comments | ユーザー投稿のコメント情報 |
-| Follows | フォロー中/フォロワーのユーザー情報 |
-| Messages | ユーザー間のダイレクトメッセージ情報 |
-| Rooms | ダイレクトメッセージのルーム情報 |
-| Entries | MessagesとRoomsの中間テーブル |
-
-# 8.機能一覧
+# 3.機能一覧
 
 ## メイン機能
 - ユーザー投稿機能(CRUD)
@@ -106,8 +82,42 @@ URL:
 - SNSシェア機能
 - AWSデプロイ
 
-# 9.作者
-- kazumakishimoto
-- Twitter:https://twitter.com/kazuma_dev
-- GitHub:https://github.com/kazumakishimoto
-- Qiita:https://qiita.com/kazumakishimoto
+
+# 4.基本設計
+
+## 画面遷移図
+![gui](https://user-images.githubusercontent.com/68370181/160355552-328990f2-bc02-4607-9a90-32a48eff4a85.png)
+
+## AWS構成図
+![aws](https://user-images.githubusercontent.com/68370181/160355537-82139efe-be99-4bb2-8661-5af5e981a899.png)
+
+## ER図
+![erd](https://user-images.githubusercontent.com/68370181/160355549-1aa3f92a-0f02-4f0b-87fe-a29fae9544f8.png)
+
+## テーブル定義書
+
+https://docs.google.com/spreadsheets/d/1R7VARnAYGivhzmraesTzjtEwzi4NCR7UnvDdrqGi9NU/edit?usp=sharing
+
+| テーブル名 | 説明 |
+|----|----|
+| Users | ユーザー情報 |
+| Articles | ユーザー投稿情報 |
+| Tags | ユーザー投稿のタグ情報 |
+| Article_tags | ArticlesとTagsの中間テーブル |
+| Likes | ユーザー投稿のいいね情報 |
+| Comments | ユーザー投稿のコメント情報 |
+| Follows | フォロー中/フォロワーのユーザー情報 |
+| Messages | ユーザー間のダイレクトメッセージ情報 |
+| Rooms | ダイレクトメッセージのルーム情報 |
+| Entries | MessagesとRoomsの中間テーブル |
+
+
+# 5.作者
+|key|value|
+|---|-----|
+|Name|岸本一眞(きしもとかずま)|
+|Wantedly|[岸本一眞](https://www.wantedly.com/id/kazumakishimoto)|
+|Twitter|[@kazuma_dev](https://twitter.com/kazuma_dev)|
+|Qiita|[@kazumakishimoto](https://qiita.com/kazumakishimoto)|
+|GitHub|[@kazumakishimoto](https://github.com/kazumakishimoto)|
+|個人開発|[**grfl**](https://grfl.herokuapp.com/)|
