@@ -32,7 +32,6 @@
 ## バックエンド
 - PHP	7.4.1
 - Laravel	6.20.43
-- Composer	2.0.14
 - PHPUnit	8.0
 
 ## インフラ
@@ -42,6 +41,12 @@
 - CircleCI	2.1
 - nginx	1.18.0
 - MySQL	5.7.36
+- SendGrid
+
+## パッケージ
+- Composer 2.0.14
+- npm 6.14.6
+- Homebrew 3.4.2
 
 ## その他使用ツール
 - Git / GitHub
