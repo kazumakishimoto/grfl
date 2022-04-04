@@ -72,7 +72,7 @@
       {!! nl2br(e( $article->body )) !!}
     </div>
     {{-- <img src="{{ Storage::url($article->image)}}"> --}}
-    <img src="{{ asset('storage/images/' . $article['image']) }}" width="200px">
+    {{-- <img src="{{ asset('storage/images/' . $article['image']) }}" width="200px"> --}}
   </div>
   <div class="card-body pt-0 pb-2 pl-3">
     <div class="card-text d-flex align-items-center">
