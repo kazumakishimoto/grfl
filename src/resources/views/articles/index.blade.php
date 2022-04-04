@@ -4,11 +4,12 @@
 
 @section('content')
 @include('nav')
-  <div class="container">
+@include('articles.bg-image')
+<div class="container">
     @foreach($articles as $article)
-      @include('articles.card')
+    @include('articles.card')
     @endforeach
     @include('articles.pagination')
-  </div>
-  @include('footer')
+</div>
+@include('footer')
 @endsection
