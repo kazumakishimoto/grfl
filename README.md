@@ -5,7 +5,7 @@
 - URL:https://grfl.herokuapp.com/
 - GitHub:https://github.com/kazumakishimoto/grfl
 
-(画像)
+![top](https://user-images.githubusercontent.com/68370181/161882216-79023316-0e08-4c7d-8b75-f1f86044ff9d.png)
 
 ## コンセプト
 - 集客に困っている飲食店が簡単にSNS広告を始められる
