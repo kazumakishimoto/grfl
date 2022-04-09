@@ -28,9 +28,10 @@
                     @csrf
                     {{-- 編集フォーム --}}
                     @if(Auth::id() != config('user.guest_user.id'))
-                    <label for="avatar">
+                    <label class="form-label d-block" for="avatar">
                         <img src="{{ $user->avatar }}" id="img" class="img-fuild rounded-circle" width="80" height="80">
-                        <input type="file" name="avatar" id="avatar" class="d-none" accept="image/*" onchange="previewImage(this);">
+                        {{-- <input type="file" name="avatar" id="avatar" class="d-none" accept="image/*" v-on:change="onFileChange"> --}}
+                        <input type="file" name="avatar" id="avatar" class="d-none" onchange="previewImage(this);">
                         @endif
                         <div class="md-form col-lg-6 col-md-7 col-sm-8 col-xs-10 mx-auto">
                             <label for="name">ユーザー名</label>
@@ -99,3 +100,13 @@
 </div>
 @include('footer')
 @endsection
+
+<script>
+    function previewImage(obj) {
+        var fileReader = new FileReader();
+        fileReader.onload = (function() {
+            document.querySelector('#img').src = fileReader.result;
+        });
+        fileReader.readAsDataURL(obj.files[0]);
+    }
+</script>

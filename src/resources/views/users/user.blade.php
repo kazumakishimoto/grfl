@@ -1,9 +1,8 @@
 <div class="card mt-3">
     <div class="card-body pb-0">
-        <div class="d-flex flex-row">
+        <div class="d-flex flex-row mb-1">
             <a href="{{ route('users.show', ['name' => $user->name]) }}" class="text-dark">
                 <img src="{{ $user->avatar }}" class="img-fuild rounded-circle" width="60" height="60">
-                {{-- <i class="fas fa-user-circle fa-3x"></i> --}}
             </a>
             @auth
             @if( Auth::id() === $user->id )

@@ -41,7 +41,6 @@ class ArticleController extends Controller
     public function store(ArticleRequest $request, Article $article)
     {
         $article->user_id = $request->user()->id;
-        $article->fill($request->all());
         $all_request = $request->all();
 
         // 画像アップロード
@@ -51,7 +50,7 @@ class ArticleController extends Controller
             $all_request['image'] = Storage::disk('s3')->url($path);
         }
 
-        $article->fill($request->all())->save();
+        $article->fill($all_request)->save();
 
         $request->tags->each(function ($tagName) use ($article) {
             $tag = Tag::firstOrCreate(['name' => $tagName]);
@@ -80,6 +79,7 @@ class ArticleController extends Controller
 
     public function update(ArticleRequest $request, Article $article)
     {
+        $article->user_id = $request->user()->id;
         $all_request = $request->all();
 
         // 画像アップロード
@@ -88,8 +88,8 @@ class ArticleController extends Controller
             $path = Storage::disk('s3')->putFile('image', $image, 'public');
             $all_request['image'] = Storage::disk('s3')->url($path);
         }
-        
-        $article->fill($request->all())->save();
+
+        $article->fill($all_request)->save();
 
         $article->tags()->detach();
         $request->tags->each(function ($tagName) use ($article) {

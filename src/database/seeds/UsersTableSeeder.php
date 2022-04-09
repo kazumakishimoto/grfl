@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
             'name'           => config('user.guest_user.name'),
             'age' => 20,
             'gender' => 1,
-            'avatar' => asset(config('user.guest_user.avatar_path')),
+            'avatar'  => asset(config('user.guest_user.avatar_path')),
             'introduction' => 'guest_introduction',
             'email'          => config('user.guest_user.email'),
             'password'       => Hash::make(config('user.guest_user.password')),

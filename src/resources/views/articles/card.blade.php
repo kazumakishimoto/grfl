@@ -1,8 +1,7 @@
 <div class="card mt-3">
     <div class="card-body d-flex flex-row">
-        <a href="{{ route('users.show', ['name' => $article->user->name]) }}" class="text-dark">
+        <a href="{{ route('users.show', ['name' => $article->user->name]) }}" class="text-dark mr-3">
             <img src="{{ $article->user->avatar }}" class="img-fuild rounded-circle" width="60" height="60">
-            {{-- <i class="fas fa-user-circle fa-3x"></i> --}}
         </a>
         <div>
             <div class="font-weight-bold">
@@ -61,15 +60,14 @@
         @endif
 
     </div>
-    <div class="card-body pt-0">
+    <div class="card-body pt-0 pb-0">
         <h3 class="h4 card-title">
             <a class="text-dark" href="{{ route('articles.show', ['article' => $article]) }}">{{ $article->title }}</a>
         </h3>
         <div class="card-text">
             {!! nl2br(e( $article->body )) !!}
         </div>
-        <img src="{{ $article->image }}" width="200px">
-        {{-- <img src="{{ Storage::url($article->image)}}"> --}}
+        <img src="{{ $article->image }}" width="200px" class="mt-3 mb-1">
     </div>
     <div class="card-body pt-0 pb-2 pl-3">
         <div class="card-text d-flex align-items-center">
