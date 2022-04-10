@@ -16,9 +16,15 @@ RUN apt-get update && \
   zip \
   unzip \
   vim \
+  libpq-dev \
+  libfreetype6-dev \
+  libjpeg62-turbo-dev \
   autoconf gcc g++ make && \
   docker-php-ext-install pdo_mysql bcmath && \
   pecl install xdebug && \
   docker-php-ext-enable xdebug
+
+RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/
+RUN docker-php-ext-install -j$(nproc) gd
 
 WORKDIR /var/www/html
