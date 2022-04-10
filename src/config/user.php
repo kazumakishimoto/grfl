@@ -6,10 +6,10 @@ return [
         'name'               => 'guest',
         'email'              => 'guest@example.com',
         'password'           => env('GUEST_USER_PASSWORD'),
-        'avatar_path' => 'images/profile/guest.png',
+        'avatar_path' => 'images/guest.png',
     ],
 
     'avatar_path' => [
-        'default' => 'images/profile/default.png',
+        'default' => 'images/default.png',
     ],
 ];

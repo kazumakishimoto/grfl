@@ -40,17 +40,17 @@ class ArticleController extends Controller
 
     public function store(ArticleRequest $request, Article $article)
     {
-        $article->fill($request->all());
         $article->user_id = $request->user()->id;
-        // 画像ファイルの保存場所指定
-        if (request('image')) {
-            $filename = $request->file('image');
-            $request->file('image')->storeAs('public/images', $filename);
-            // $image = $request->file('image');
-            // $filename= $image->store('public/images');
-            // $article->image = str_replace('public/images/', '', $filename);
+        $all_request = $request->all();
+
+        // 画像アップロード
+        if (isset($all_request['image'])) {
+            $image = $request->file('image');
+            $path = Storage::disk('s3')->putFile('image', $image, 'public');
+            $all_request['image'] = Storage::disk('s3')->url($path);
         }
-        $article->save();
+
+        $article->fill($all_request)->save();
 
         $request->tags->each(function ($tagName) use ($article) {
             $tag = Tag::firstOrCreate(['name' => $tagName]);
@@ -79,7 +79,17 @@ class ArticleController extends Controller
 
     public function update(ArticleRequest $request, Article $article)
     {
-        $article->fill($request->all())->save();
+        $article->user_id = $request->user()->id;
+        $all_request = $request->all();
+
+        // 画像アップロード
+        if (isset($all_request['image'])) {
+            $image = $request->file('image');
+            $path = Storage::disk('s3')->putFile('image', $image, 'public');
+            $all_request['image'] = Storage::disk('s3')->url($path);
+        }
+
+        $article->fill($all_request)->save();
 
         $article->tags()->detach();
         $request->tags->each(function ($tagName) use ($article) {

@@ -52,11 +52,17 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $messages = [
+            'regex' => ':attributeに「/」と半角スペースは使用できません。',
+        ];
+
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'regex:/^(?!.*\s).+$/u', 'regex:/^(?!.*\/).*$/', 'max:15', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', new CustomPasswordValidation, 'confirmed'],
-        ]);
+        ],
+        $messages
+    );
     }
 
     public function showProviderUserRegistrationForm(Request $request, string $provider)
@@ -155,6 +161,7 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
+            'avatar' => asset(config('user.avatar_path.default')),
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);

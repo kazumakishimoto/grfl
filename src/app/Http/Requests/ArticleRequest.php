@@ -41,6 +41,13 @@ class ArticleRequest extends FormRequest
         ];
     }
 
+    public function messages()
+    {
+        return [
+            'tags.regex' => ':attributeに「/」と半角スペースは使用できません。'
+        ];
+    }
+
     public function passedValidation()
     {
         $this->tags = collect(json_decode($this->tags))

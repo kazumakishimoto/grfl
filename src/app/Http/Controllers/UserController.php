@@ -115,19 +115,10 @@ class UserController extends Controller
         $user = User::where('name', $name)->first();
 
         // 画像アップロード
-        if (request('avatar')) {
-            $avatar = $request->file('avatar');
-            if (app()->isLocal() || app()->runningUnitTests()) {
-                // 開発環境
-                $file_name = $request->file('avatar')->getClientOriginalName();
-                Storage::disk('public')->putFileAs('avatar', $request->file('avatar'), $file_name);
-                // $path = $avatar->storeAs('public/images', $user->id . '.jpg');
-                // $user->avatar = Storage::url($path);
-            } else {
-                // 本番環境
-                $path = Storage::disk('s3')->put('/', $avatar, 'public');
-                $user->avatar = Storage::disk('s3')->url($path);
-            }
+        if (isset($validated['avatar'])) {
+            $image = $request->file('avatar');
+            $path = Storage::disk('s3')->putFile('avatar', $image, 'public');
+            $validated['avatar'] = Storage::disk('s3')->url($path);
         }
 
         // UserPolicyのupdateメソッドでアクセス制限
