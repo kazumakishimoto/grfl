@@ -11,7 +11,7 @@
   </article-tags-input>
 </div>
 <div class="form-group">
-  <label></label>
+  <label for="image"></label>
   <textarea name="body" required class="form-control" rows="16" placeholder="本文">{{ $article->body ?? old('body') }}</textarea>
-  <input id="image" type="file" name="image">
+  <input id="image" type="file" name="image" accept="image/*" onchange="previewImage(this);">
 </div>

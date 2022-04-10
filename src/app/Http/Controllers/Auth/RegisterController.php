@@ -161,6 +161,7 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
+            'avatar' => asset(config('user.avatar_path.default')),
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
