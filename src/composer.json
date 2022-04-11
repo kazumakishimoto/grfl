@@ -14,8 +14,7 @@
         "laravel/framework": "^6.20.26",
         "laravel/socialite": "^5.2",
         "laravel/tinker": "^2.5",
-        "league/flysystem-aws-s3-v3": "^1.0",
-        "ext-gd": "*"
+        "league/flysystem-aws-s3-v3": "^1.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
