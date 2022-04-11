@@ -131,6 +131,7 @@ class RegisterController extends Controller
         if ($provider === 'google') {
             $user = User::create([
                 'name' => $request->name,
+                'avatar' => asset(config('user.avatar_path.default')),
                 'email' => $providerUser->getEmail(),
                 'password' => null,
             ]);
@@ -139,6 +140,7 @@ class RegisterController extends Controller
         } elseif ($provider === 'twitter') {
             $user = User::create([
                 'name' => $request->name,
+                'avatar' => asset(config('user.avatar_path.default')),
                 'email' => $request->email,
                 'twitter_id' => $providerUser->getId(),
                 'password' => null,
