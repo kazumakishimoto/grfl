@@ -3,6 +3,19 @@
   <label>タイトル</label>
   <input type="text" name="title" class="form-control" required value="{{ $article->title ?? old('title') }}">
 </div>
+
+{{-- <div class="form-group">
+    <label for="pref_id">所在地</label>
+    <select class="form-control" id="pref" name="pref" required>
+        @foreach(config('pref') as $key => $score)
+        <option value="{{ $key }}">{{ $score }}</option>
+        @endforeach
+    </select>
+    <small>
+        プルダウンよりお選びください
+    </small>
+</div> --}}
+
 <div class="form-group">
   <article-tags-input
   :initial-tags='@json($tagNames ?? [])'
@@ -11,7 +24,9 @@
   </article-tags-input>
 </div>
 <div class="form-group">
-  <label for="image"></label>
   <textarea name="body" required class="form-control" rows="16" placeholder="本文">{{ $article->body ?? old('body') }}</textarea>
-  <input id="image" type="file" name="image" accept="image/*" onchange="previewImage(this);">
+</div>
+<div class="form-group">
+    <label for="image"></label>
+    <input id="image" type="file" name="image" accept="image/*" onchange="previewImage(this);">
 </div>

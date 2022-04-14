@@ -11,8 +11,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Article extends Model
 {
     use SoftDeletes;
-    
+
     protected $fillable = [
+        'pref_id',
         'title',
         'body',
         'image',
@@ -48,5 +49,10 @@ class Article extends Model
     public function getCountLikesAttribute(): int
     {
         return $this->likes->count();
+    }
+
+    public function getPrefNameAttribute()
+    {
+        return config('pref.' . $this->pref_id);
     }
 }
