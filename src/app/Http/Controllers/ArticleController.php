@@ -29,13 +29,16 @@ class ArticleController extends Controller
 
     public function create()
     {
+        // 'prefs' => $prefs,
         $allTagNames = Tag::all()->map(function ($tag) {
             return ['text' => $tag->name];
         });
 
         return view('articles.create', [
             'allTagNames' => $allTagNames,
-        ]);
+        ])
+        // ->with('pref_id', $prefs)
+        ;
     }
 
     public function store(ArticleRequest $request, Article $article)
@@ -62,6 +65,7 @@ class ArticleController extends Controller
 
     public function edit(Article $article)
     {
+        // 'prefs' => $prefs,
         $tagNames = $article->tags->map(function ($tag) {
             return ['text' => $tag->name];
         });
@@ -74,7 +78,9 @@ class ArticleController extends Controller
             'article' => $article,
             'tagNames' => $tagNames,
             'allTagNames' => $allTagNames,
-        ]);
+        ])
+            // ->with('pref_id', $prefs)
+        ;
     }
 
     public function update(ArticleRequest $request, Article $article)
@@ -142,19 +148,28 @@ class ArticleController extends Controller
 
     // 検索機能
     public function search(Request $request) {
-        $search = $request->input('search');
         $query = Article::query();
+        $search = $request->input('search');
+        // $prefs = config('pref');
+        // $sort = $request->pref_id;
 
         if (!empty($search)) {
             $query->where('title', 'LIKE', "%{$search}%")
             ->orWhere('body', 'LIKE', "%{$search}%");
         }
 
+        // if (!empty($sort) && $sort !== '0') {
+        //     $query->where('pref_id', $sort);
+        // }
+
         $articles = $query
         ->orderBy('created_at', 'desc')
         ->with(['user', 'likes', 'tags'])
         ->paginate(10);
 
-        return view('articles.index', ['articles' => $articles]);
+        return view('articles.index', [
+            'articles' => $articles,
+            // 'prefs' => $prefs,
+        ]);
     }
 }
