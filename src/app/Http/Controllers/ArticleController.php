@@ -20,7 +20,8 @@ class ArticleController extends Controller
 
     public function index()
     {
-        $articles = Article::with(['user', 'likes', 'tags'])
+        $articles = Article::query()
+            ->with(['user', 'likes', 'tags', 'comments'])
             ->orderBy('created_at', 'desc')
             ->paginate(15);
 
@@ -29,19 +30,21 @@ class ArticleController extends Controller
 
     public function create()
     {
+        $prefs = config('pref');
         $allTagNames = Tag::all()->map(function ($tag) {
             return ['text' => $tag->name];
         });
 
         return view('articles.create', [
             'allTagNames' => $allTagNames,
-        ]);
+        ])->with(['prefs' => $prefs]);
     }
 
     public function store(ArticleRequest $request, Article $article)
     {
         $article->user_id = $request->user()->id;
         $all_request = $request->all();
+        $article->pref_id = $request->pref;
 
         // 画像アップロード
         if (isset($all_request['image'])) {
@@ -62,6 +65,7 @@ class ArticleController extends Controller
 
     public function edit(Article $article)
     {
+        $prefs = config('pref');
         $tagNames = $article->tags->map(function ($tag) {
             return ['text' => $tag->name];
         });
@@ -74,13 +78,14 @@ class ArticleController extends Controller
             'article' => $article,
             'tagNames' => $tagNames,
             'allTagNames' => $allTagNames,
-        ]);
+        ])->with(['prefs' => $prefs]);
     }
 
     public function update(ArticleRequest $request, Article $article)
     {
         $article->user_id = $request->user()->id;
         $all_request = $request->all();
+        $article->pref_id = $request->pref;
 
         // 画像アップロード
         if (isset($all_request['image'])) {
@@ -109,9 +114,9 @@ class ArticleController extends Controller
     public function show(Article $article)
     {
         $comments = $article->comments()
-        ->with('user')
-        ->orderBy('created_at', 'desc')
-        ->paginate(5);
+            ->with('user')
+            ->orderBy('created_at', 'desc')
+            ->paginate(5);
 
         return view('articles.show', [
             'article'  => $article,
@@ -141,20 +146,16 @@ class ArticleController extends Controller
     }
 
     // 検索機能
-    public function search(Request $request) {
-        $search = $request->input('search');
-        $query = Article::query();
-
-        if (!empty($search)) {
-            $query->where('title', 'LIKE', "%{$search}%")
-            ->orWhere('body', 'LIKE', "%{$search}%");
-        }
-
-        $articles = $query
+    public function search(Request $request)
+    {
+        $articles = Article::searchFilter($request->search)
+        ->prefFilter($request->pref)
         ->orderBy('created_at', 'desc')
         ->with(['user', 'likes', 'tags'])
         ->paginate(10);
 
-        return view('articles.index', ['articles' => $articles]);
+        return view('articles.index', [
+            'articles' => $articles,
+        ]);
     }
 }

@@ -74,9 +74,14 @@
             <article-like :initial-is-liked-by='@json($article->isLikedBy(Auth::user()))' :initial-count-likes='@json($article->count_likes)' :authorized='@json(Auth::check())' endpoint="{{ route('articles.like', ['article' => $article]) }}">
             </article-like>
             <div class="ml-1 d-flex align-items-center">
-                <a class="p-1" href="{{ url('articles/' .$article->id) }}"><i class="far fa-comment fa-fw mr-1"></i></a>
+                <a class="p-1" href="{{ url('articles/' .$article->id) }}"><i class="far fa-comment fa-fw"></i></a>
                 <p class="mb-0 text-secondary">{{ count($article->comments) }}</p>
             </div>
+            @if($article->pref_id !== 0)
+            <div class="ml-2 d-flex align-items-center">
+                <a href="{{ route('articles.search', ['pref' => $article->pref_id]) }}" class="text-muted"><i class="fas fa-map-marker-alt p-1"></i>{{ $article->prefName }}</a>
+            </div>
+            @endif
         </div>
     </div>
     @foreach($article->tags as $tag)

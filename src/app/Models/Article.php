@@ -11,8 +11,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Article extends Model
 {
     use SoftDeletes;
-    
+
     protected $fillable = [
+        'pref_id',
         'title',
         'body',
         'image',
@@ -48,5 +49,29 @@ class Article extends Model
     public function getCountLikesAttribute(): int
     {
         return $this->likes->count();
+    }
+
+    public function getPrefNameAttribute()
+    {
+        return config('pref.' . $this->pref_id);
+    }
+
+    public function scopeSearchFilter($query, string $search = null)
+    {
+        if (!$search) {
+            return $query;
+        }
+
+        return $query->where('title', 'LIKE', "%{$search}%")
+        ->orWhere('body', 'LIKE', "%{$search}%");
+    }
+
+    public function scopePrefFilter($query, string $pref = null)
+    {
+        if (!$pref) {
+            return $query;
+        }
+
+        return $query->where('pref_id', $pref);
     }
 }

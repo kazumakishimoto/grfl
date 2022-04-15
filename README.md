@@ -5,7 +5,7 @@
 - URL:https://grfl.herokuapp.com/
 - GitHub:https://github.com/kazumakishimoto/grfl
 
-![top](https://user-images.githubusercontent.com/68370181/161882216-79023316-0e08-4c7d-8b75-f1f86044ff9d.png)
+![top](https://user-images.githubusercontent.com/68370181/162933339-209d5002-c583-468a-b67f-b6dc15f4db8e.png)
 
 ## コンセプト
 - 集客に困っている飲食店が簡単にSNS広告を始められる
@@ -60,12 +60,13 @@
 
 ## メイン機能
 - ユーザー投稿機能(CRUD)
+- 画像アップロード機能(AWS S3バケット)
 - ページネーション機能
 - コメント機能(CRUD)
 - タグ機能(Vue.js / Vue Tags Input)
 - いいね機能(Vue.js / ajax)
 - フォロー機能(Vue.js / ajax)
-- 投稿検索機能
+- 検索機能(昇順 / 降順 / いいね順 / コメント数順)
 - お問い合わせ機能(SendGrid)
 - PHPUnitテスト(CircleCI)
 - レスポンシブWEBデザイン(ハンバーガーメニュー)
@@ -78,11 +79,8 @@
 - メールアドレス変更(SendGrid)
 - パスワード再設定(SendGrid)
 
-## 実装予定(2022/03/31時点)
+## 実装予定(2022/04/12時点)
 - Twitter アカウントを利用したユーザー登録・ログイン(Twitter OAuth)
-- 画像アップロード機能(AWS S3バケット)
-- ユーザー検索機能
-- ソート検索機能(昇順 / 降順 / いいね順 / コメント数順)
 - DM機能
 - SNSシェア機能
 - AWSデプロイ
