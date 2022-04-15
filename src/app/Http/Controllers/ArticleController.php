@@ -21,7 +21,7 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::query()
-            ->with(['user', 'likes', 'tags'])
+            ->with(['user', 'likes', 'tags', 'comments'])
             ->orderBy('created_at', 'desc')
             ->paginate(15);
 
