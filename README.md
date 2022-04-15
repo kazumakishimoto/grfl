@@ -2,10 +2,11 @@
 
 - 飲食店とインフルエンサーのマッチングアプリ
 
-- URL:https://grfl.herokuapp.com/
+- URL(AWS):
+- URL(Heroku):https://grfl.herokuapp.com/
 - GitHub:https://github.com/kazumakishimoto/grfl
 
-![top](https://user-images.githubusercontent.com/68370181/162933339-209d5002-c583-468a-b67f-b6dc15f4db8e.png)
+![top](https://user-images.githubusercontent.com/68370181/163541304-be60c925-76a3-4edd-abdc-f1f3d919d55a.png)
 
 ## コンセプト
 - 集客に困っている飲食店が簡単にSNS広告を始められる
@@ -66,21 +67,23 @@
 - タグ機能(Vue.js / Vue Tags Input)
 - いいね機能(Vue.js / ajax)
 - フォロー機能(Vue.js / ajax)
-- 検索機能(昇順 / 降順 / いいね順 / コメント数順)
+- キーワード検索機能(都道府県別ソート機能)
 - お問い合わせ機能(SendGrid)
 - PHPUnitテスト(CircleCI)
 - レスポンシブWEBデザイン(ハンバーガーメニュー)
 
 ## 認証機能
-- ユーザー登録 / ログイン / ログアウト
+- 会員登録 / ログイン / ログアウト
 - ゲストログイン機能
-- Google アカウントを利用したユーザー登録・ログイン(GCP OAuth)
-- プロフィール編集 / アカウント削除
+- Google アカウントを利用した会員登録・ログイン(GCP OAuth)
+- プロフィール編集
 - メールアドレス変更(SendGrid)
 - パスワード再設定(SendGrid)
+- 退会
 
-## 実装予定(2022/04/12時点)
-- Twitter アカウントを利用したユーザー登録・ログイン(Twitter OAuth)
+## 実装予定(2022/04/15時点)
+- Twitter アカウントを利用した会員登録・ログイン(Twitter OAuth)
+- ユーザー検索機能
 - DM機能
 - SNSシェア機能
 - AWSデプロイ
