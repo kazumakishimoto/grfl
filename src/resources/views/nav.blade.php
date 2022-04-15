@@ -14,11 +14,11 @@
             <li class="nav-item">
                 <form method="GET" action="{{ route('articles.search') }}" class="d-flex">
                     <!-- 都道府県絞り込み -->
-                    {{-- <select class="form-control" id="pref" name="pref" required>
-                        @foreach(config('pref') as $key => $score)
-                        <option value="{{ $score }}">{{ $score }}</option>
+                    <select class="form-control" id="pref" name="pref">
+                        @foreach(config('pref'); as $key => $score)
+                        <option value="{{ $key }}">{{ $score }}</option>
                         @endforeach
-                    </select> --}}
+                    </select>
                     <input class="form-control" name="search" type="text" placeholder="検索..." aria-label="Search">
                     <button class="input-group-text border-0" type="submit"><i class="fas fa-search"></i></button>
                 </form>

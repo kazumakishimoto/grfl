@@ -77,9 +77,11 @@
                 <a class="p-1" href="{{ url('articles/' .$article->id) }}"><i class="far fa-comment fa-fw"></i></a>
                 <p class="mb-0 text-secondary">{{ count($article->comments) }}</p>
             </div>
-            {{-- <div class="ml-2 d-flex align-items-center">
-                <a href="{{ route('articles.search', ['pref_id' => $article->pref_id]) }}" class="border text-muted p-1">{{ $article->prefName }}</a>
-            </div> --}}
+            @if($article->pref_id !== 0)
+            <div class="ml-2 d-flex align-items-center">
+                <a href="{{ route('articles.search', ['pref' => $article->pref_id]) }}" class="text-muted"><i class="fas fa-map-marker-alt p-1"></i>{{ $article->prefName }}</a>
+            </div>
+            @endif
         </div>
     </div>
     @foreach($article->tags as $tag)
