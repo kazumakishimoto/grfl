@@ -98,7 +98,7 @@
 ![aws](https://user-images.githubusercontent.com/68370181/160355537-82139efe-be99-4bb2-8661-5af5e981a899.png)
 
 ## ER図
-![erd](https://user-images.githubusercontent.com/68370181/160355549-1aa3f92a-0f02-4f0b-87fe-a29fae9544f8.png)
+![erd](https://user-images.githubusercontent.com/68370181/163666380-247d7cb3-3e61-4fdb-98fb-4f16d16aa59c.png)
 
 ## テーブル定義書
 
