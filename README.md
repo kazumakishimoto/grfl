@@ -20,7 +20,7 @@
 
 ## 使用画面のイメージ
 
-(画像)
+![demo](https://user-images.githubusercontent.com/68370181/163667709-389bd6f5-90a6-42be-a396-04776d597644.png)
 
 
 # 2.使用技術
