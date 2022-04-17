@@ -1,11 +1,9 @@
 # 1.アプリ概要
-
 - 飲食店とインフルエンサーのマッチングアプリ
-
 - URL(AWS):
 - URL(Heroku):https://grfl.herokuapp.com/
+- Qiita:
 - GitHub:https://github.com/kazumakishimoto/grfl
-
 ![top](https://user-images.githubusercontent.com/68370181/163541304-be60c925-76a3-4edd-abdc-f1f3d919d55a.png)
 
 ## コンセプト
@@ -14,17 +12,15 @@
 - 『安価で簡単』に広告を始められるアプリです
 
 ## 特徴
-- エリアやジャンル別で飲食店・インフルエンサーを発見できる
+- エリアやジャンル別で飲食店/インフルエンサーを発見できる
 - 具体的な広告内容や広告条件を投稿内容から確認できる
 - ダイレクトメッセージで連絡できる
 
 ## 使用画面のイメージ
-
 ![demo](https://user-images.githubusercontent.com/68370181/163667709-389bd6f5-90a6-42be-a396-04776d597644.png)
 
 
 # 2.使用技術
-
 ## フロントエンド
 - Vue.js 2.6.14
 - jQuery 3.4.1
@@ -58,7 +54,6 @@
 
 
 # 3.機能一覧
-
 ## メイン機能
 - ユーザー投稿機能(CRUD)
 - 画像アップロード機能(AWS S3バケット)
@@ -70,19 +65,19 @@
 - キーワード検索機能(都道府県別ソート機能)
 - お問い合わせ機能(SendGrid)
 - PHPUnitテスト(CircleCI)
-- レスポンシブWEBデザイン(ハンバーガーメニュー)
+- レスポンシブデザイン(ハンバーガーメニュー)
 
 ## 認証機能
 - 会員登録 / ログイン / ログアウト
 - ゲストログイン機能
-- Google アカウントを利用した会員登録・ログイン(GCP OAuth)
+- Google会員登録・ログイン(GCP OAuth)
 - プロフィール編集
 - メールアドレス変更(SendGrid)
 - パスワード再設定(SendGrid)
 - 退会
 
 ## 実装予定(2022/04/15時点)
-- Twitter アカウントを利用した会員登録・ログイン(Twitter OAuth)
+- Twitter会員登録・ログイン(Twitter OAuth)
 - ユーザー検索機能
 - DM機能
 - SNSシェア機能
@@ -90,7 +85,6 @@
 
 
 # 4.基本設計
-
 ## 画面遷移図
 ![gui](https://user-images.githubusercontent.com/68370181/160355552-328990f2-bc02-4607-9a90-32a48eff4a85.png)
 
@@ -101,19 +95,18 @@
 ![erd](https://user-images.githubusercontent.com/68370181/163666380-247d7cb3-3e61-4fdb-98fb-4f16d16aa59c.png)
 
 ## テーブル定義書
-
 https://docs.google.com/spreadsheets/d/1R7VARnAYGivhzmraesTzjtEwzi4NCR7UnvDdrqGi9NU/edit?usp=sharing
 
 | テーブル名 | 説明 |
 |----|----|
 | Users | ユーザー情報 |
-| Articles | ユーザー投稿情報 |
-| Tags | ユーザー投稿のタグ情報 |
+| Articles | 投稿情報 |
+| Tags | 投稿のタグ情報 |
 | Article_tags | ArticlesとTagsの中間テーブル |
-| Likes | ユーザー投稿のいいね情報 |
-| Comments | ユーザー投稿のコメント情報 |
-| Follows | フォロー中/フォロワーのユーザー情報 |
-| Messages | ユーザー間のダイレクトメッセージ情報 |
+| Likes | いいね情報 |
+| Comments | コメント情報 |
+| Follows | フォロー中/フォロワー情報 |
+| Messages | ダイレクトメッセージ情報 |
 | Rooms | ダイレクトメッセージのルーム情報 |
 | Entries | MessagesとRoomsの中間テーブル |
 
