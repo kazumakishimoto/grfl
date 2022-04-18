@@ -87,21 +87,26 @@ class LoginController extends Controller
 
         //Google
         if ($provider === 'google') {
-            return redirect()->route('register.{provider}', [
+
+            $data = [
                 'provider' => $provider,
                 'email' => $providerUser->getEmail(),
                 'token' => $providerUser->token,
-            ]);
+            ];
+
+            return redirect()->route('register.{provider}', $data);
 
             //Twitter
         } elseif ($provider === 'twitter') {
-            //DBにユーザー情報がなければ作成する
-            return redirect()->route('register.{provider}', [
+
+            $data = [
                 'provider' => $provider,
                 'twitter_id' => $providerUser->getId(),
                 'token' => $providerUser->token,
                 'tokenSecret' => $providerUser->tokenSecret,
-            ]);
+            ];
+            //DBにユーザー情報がなければ作成する
+            return redirect()->route('register.{provider}', $data);
         }
     }
 }

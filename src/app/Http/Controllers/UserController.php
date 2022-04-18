@@ -24,10 +24,12 @@ class UserController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10);
 
-        return view('users.show', [
+        $data = [
             'user' => $user,
             'articles' => $articles,
-        ]);
+        ];
+
+        return view('users.show', $data);
     }
 
     public function likes(string $name)
@@ -39,10 +41,12 @@ class UserController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10);
 
-        return view('users.likes', [
+        $data = [
             'user' => $user,
             'articles' => $articles,
-        ]);
+        ];
+
+        return view('users.likes', $data);
     }
 
     public function followings(string $name)
@@ -54,10 +58,12 @@ class UserController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(5);
 
-        return view('users.followings', [
+        $data = [
             'user' => $user,
             'followings' => $followings,
-        ]);
+        ];
+
+        return view('users.followings', $data);
     }
 
     public function followers(string $name)
@@ -69,10 +75,12 @@ class UserController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(5);
 
-        return view('users.followers', [
+        $data = [
             'user' => $user,
             'followers' => $followers,
-        ]);
+        ];
+
+        return view('users.followers', $data);
     }
 
     public function follow(Request $request, string $name)
@@ -106,7 +114,11 @@ class UserController extends Controller
     {
         $user = User::where('name', $name)->first();
 
-        return view('users.edit', ['user' => $user]);
+        $data = [
+            'user' => $user
+        ];
+
+        return view('users.edit', $data);
     }
 
     public function update(UserRequest $request, string $name)
@@ -127,7 +139,11 @@ class UserController extends Controller
         // バリデーションにかけた値だけをDBに保存
         $user->fill($validated)->save();
 
-        return redirect()->route('users.show', ["name" => $user->name]);
+        $data = [
+            "name" => $user->name
+        ];
+
+        return redirect()->route('users.show', $data);
     }
 
     public function destroy(string $name)
@@ -149,7 +165,11 @@ class UserController extends Controller
         // UserPolicyのupdateメソッドでアクセス制限
         $this->authorize('update', $user);
 
-        return view('users.edit_password', ['user' => $user]);
+        $data = [
+            'user' => $user
+        ];
+
+        return view('users.edit_password', $data);
     }
 
     //パスワード編集処理
@@ -177,7 +197,11 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
-        return redirect()->route('users.show', ["name" => $user->name]);
+        $data = [
+            "name" => $user->name
+        ];
+
+        return redirect()->route('users.show', $data);
     }
 
     public function passwordValidator(array $data)

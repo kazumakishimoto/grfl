@@ -25,7 +25,11 @@ class ArticleController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(15);
 
-        return view('articles.index', ['articles' => $articles]);
+        $data = [
+            'articles' => $articles,
+        ];
+
+        return view('articles.index', $data);
     }
 
     public function create()
@@ -35,9 +39,11 @@ class ArticleController extends Controller
             return ['text' => $tag->name];
         });
 
-        return view('articles.create', [
+        $data = [
             'allTagNames' => $allTagNames,
-        ])->with(['prefs' => $prefs]);
+        ];
+
+        return view('articles.create', $data)->with(['prefs' => $prefs]);
     }
 
     public function store(ArticleRequest $request, Article $article)
@@ -74,11 +80,13 @@ class ArticleController extends Controller
             return ['text' => $tag->name];
         });
 
-        return view('articles.edit', [
+        $data = [
             'article' => $article,
             'tagNames' => $tagNames,
             'allTagNames' => $allTagNames,
-        ])->with(['prefs' => $prefs]);
+        ];
+
+        return view('articles.edit', $data)->with(['prefs' => $prefs]);
     }
 
     public function update(ArticleRequest $request, Article $article)
@@ -118,10 +126,12 @@ class ArticleController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(5);
 
-        return view('articles.show', [
+        $data = [
             'article'  => $article,
             'comments' => $comments
-        ]);
+        ];
+
+        return view('articles.show', $data);
     }
 
     public function like(Request $request, Article $article)
@@ -149,13 +159,15 @@ class ArticleController extends Controller
     public function search(Request $request)
     {
         $articles = Article::searchFilter($request->search)
-        ->prefFilter($request->pref)
-        ->orderBy('created_at', 'desc')
-        ->with(['user', 'likes', 'tags'])
-        ->paginate(10);
+            ->prefFilter($request->pref)
+            ->orderBy('created_at', 'desc')
+            ->with(['user', 'likes', 'tags'])
+            ->paginate(10);
 
-        return view('articles.index', [
+        $data = [
             'articles' => $articles,
-        ]);
+        ];
+
+        return view('articles.index', $data);
     }
 }

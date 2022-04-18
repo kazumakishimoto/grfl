@@ -75,23 +75,27 @@ class RegisterController extends Controller
         if ($provider === 'google') {
             $providerUser = $providerUser->userFromToken($token);
 
-            return view('auth.social_register', [
+            $data = [
                 'provider' => $provider,
                 'email' => $providerUser->getEmail(),
                 'token' => $providerUser->token,
-            ]);
+            ];
+
+            return view('auth.social_register', $data);
 
             //twitter
         } elseif ($provider === 'twitter') {
             $tokenSecret = $request->tokenSecret;
             $providerUser = $providerUser->userFromTokenAndSecret($token, $tokenSecret);
 
-            return view('auth.social_register', [
+            $data = [
                 'provider' => $provider,
                 'twitter_id' => $providerUser->getId(),
                 'token' => $providerUser->token,
                 'tokenSecret' => $providerUser->tokenSecret,
-            ]);
+            ];
+
+            return view('auth.social_register', $data);
         }
     }
 
