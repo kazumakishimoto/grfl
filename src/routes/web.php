@@ -11,23 +11,29 @@
 |
 */
 
-# Auth
+# ユーザー新規登録、ログイン、ログアウト
 Auth::routes();
 
 # ゲストユーザーログイン
 Route::get('guest', 'Auth\LoginController@guestLogin')->name('login.guest');
 
-# Laravel Socialite
+# SNSアカウントログイン
 Route::prefix('login')->name('login.')->group(function () {
     Route::get('/{provider}', 'Auth\LoginController@redirectToProvider')->name('{provider}');
     Route::get('/{provider}/callback', 'Auth\LoginController@handleProviderCallback')->name('{provider}.callback');
 });
+# SNSアカウントユーザー登録
 Route::prefix('register')->name('register.')->group(function () {
     Route::get('/{provider}', 'Auth\RegisterController@showProviderUserRegistrationForm')->name('{provider}');
     Route::post('/{provider}', 'Auth\RegisterController@registerProviderUser')->name('{provider}');
 });
 
-# Contact
+# フッター
+Route::get('/about', 'HomeController@about')->name('about');
+Route::get('/privacy', 'HomeController@privacy')->name('privacy');
+Route::get('/terms', 'HomeController@terms')->name('terms');
+
+# お問い合わせ
 // 入力ページ
 Route::get('/contact', 'ContactController@index')->name('contact.index');
 // 確認ページ
@@ -35,32 +41,18 @@ Route::post('/contact/confirm', 'ContactController@confirm')->name('contact.conf
 // 送信完了ページ
 Route::post('/contact/thanks', 'ContactController@send')->name('contact.send');
 
-# Home
-Route::get('/about', 'HomeController@about')->name('about');
-Route::get('/privacy', 'HomeController@privacy')->name('privacy');
-Route::get('/terms', 'HomeController@terms')->name('terms');
-
-# article
+# ユーザー投稿関係(create, store, edit, update, destroy)
 Route::get('/', 'ArticleController@index')->name('articles.index');
 Route::resource('/articles', 'ArticleController')->except(['index', 'show'])->middleware('auth');
 Route::resource('/articles', 'ArticleController')->only(['show']);
 
-// 検索画面
+# 検索機能
 Route::get('/search', 'ArticleController@search')->name('articles.search');
 
-# like
-Route::prefix('articles')->name('articles.')->group(function () {
-    Route::put('/{article}/like', 'ArticleController@like')->name('like')->middleware('auth');
-    Route::delete('/{article}/like', 'ArticleController@unlike')->name('unlike')->middleware('auth');
-});
-
-# Tag
+# タグ機能
 Route::get('/tags/{name}', 'TagController@show')->name('tags.show');
 
-# comment
-Route::resource('/comments', 'CommentController')->only(['store', 'destroy'])->middleware('auth');
-
-# user
+# ユーザー関係
 Route::prefix('users')->name('users.')->group(function () {
     // ユーザー詳細
     Route::get('/{name}', 'UserController@show')->name('show');
@@ -72,7 +64,7 @@ Route::prefix('users')->name('users.')->group(function () {
     Route::get('/{name}/followers', 'UserController@followers')->name('followers');
 });
 
-# ログインユーザーのみ
+### ログイン状態で使用可能 ###
 Route::middleware('auth')->group(function () {
     Route::prefix('users/{name}')->name('users.')->group(function () {
         // プロフィール編集
@@ -89,4 +81,13 @@ Route::middleware('auth')->group(function () {
         Route::put('/follow', 'UserController@follow')->name('follow');
         Route::delete('/follow', 'UserController@unfollow')->name('unfollow');
     });
+
+    # いいね機能
+    Route::prefix('articles')->name('articles.')->group(function () {
+        Route::put('/{article}/like', 'ArticleController@like')->name('like');
+        Route::delete('/{article}/like', 'ArticleController@unlike')->name('unlike');
+    });
+
+    # コメント投稿関係(store, destroy)
+    Route::resource('/comments', 'CommentController')->only(['store', 'destroy']);
 });
