@@ -20,6 +20,11 @@ class ArticleController extends Controller
         $this->authorizeResource(Article::class, 'article');
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | 投稿一覧
+    |--------------------------------------------------------------------------
+    */
     public function index()
     {
         $articles = Article::query()
@@ -34,7 +39,11 @@ class ArticleController extends Controller
         return view('articles.index', $data);
     }
 
-    // 投稿画面
+    /*
+    |--------------------------------------------------------------------------
+    | 投稿画面
+    |--------------------------------------------------------------------------
+    */
     public function create()
     {
         $prefs = config('pref');
@@ -53,7 +62,11 @@ class ArticleController extends Controller
         return view('articles.create', $data)->with(['prefs' => $prefs]);
     }
 
-    // 投稿処理
+    /*
+    |--------------------------------------------------------------------------
+    | 投稿処理
+    |--------------------------------------------------------------------------
+    */
     public function store(ArticleRequest $request, Article $article)
     {
         $article->user_id = $request->user()->id;
@@ -77,7 +90,11 @@ class ArticleController extends Controller
         return redirect()->route('articles.index');
     }
 
-    // 編集画面
+    /*
+    |--------------------------------------------------------------------------
+    | 編集画面
+    |--------------------------------------------------------------------------
+    */
     public function edit(Article $article)
     {
         $prefs = config('pref');
@@ -99,7 +116,11 @@ class ArticleController extends Controller
         return view('articles.edit', $data)->with(['prefs' => $prefs]);
     }
 
-    // 編集処理
+    /*
+    |--------------------------------------------------------------------------
+    | 編集処理
+    |--------------------------------------------------------------------------
+    */
     public function update(ArticleRequest $request, Article $article)
     {
         $article->user_id = $request->user()->id;
@@ -124,14 +145,22 @@ class ArticleController extends Controller
         return redirect()->route('articles.index');
     }
 
-    // 削除処理
+    /*
+    |--------------------------------------------------------------------------
+    | 削除処理
+    |--------------------------------------------------------------------------
+    */
     public function destroy(Article $article)
     {
         $article->delete();
         return redirect()->route('articles.index');
     }
 
-    // 詳細画面
+    /*
+    |--------------------------------------------------------------------------
+    | 詳細画面
+    |--------------------------------------------------------------------------
+    */
     public function show(Article $article)
     {
         $comments = $article->comments()
@@ -147,7 +176,11 @@ class ArticleController extends Controller
         return view('articles.show', $data);
     }
 
-    // いいね機能
+    /*
+    |--------------------------------------------------------------------------
+    | いいね機能
+    |--------------------------------------------------------------------------
+    */
     public function like(Request $request, Article $article)
     {
         $article->likes()->detach($request->user()->id);
@@ -159,7 +192,11 @@ class ArticleController extends Controller
         ];
     }
 
-    // いいね解除機能
+    /*
+    |--------------------------------------------------------------------------
+    | いいね解除機能
+    |--------------------------------------------------------------------------
+    */
     public function unlike(Request $request, Article $article)
     {
         $article->likes()->detach($request->user()->id);
@@ -170,7 +207,11 @@ class ArticleController extends Controller
         ];
     }
 
-    // 検索機能
+    /*
+    |--------------------------------------------------------------------------
+    |検索機能
+    |--------------------------------------------------------------------------
+    */
     public function search(Request $request)
     {
         $articles = Article::searchFilter($request->search)

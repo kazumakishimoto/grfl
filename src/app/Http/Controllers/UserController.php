@@ -15,7 +15,11 @@ use App\Models\Article;
 
 class UserController extends Controller
 {
-    // ユーザーページ表示
+    /*
+    |--------------------------------------------------------------------------
+    | ユーザーページ表示
+    |--------------------------------------------------------------------------
+    */
     public function show(string $name)
     {
         $user = User::where('name', $name)->first()
@@ -33,7 +37,11 @@ class UserController extends Controller
         return view('users.show', $data);
     }
 
-    // プロフィール編集画面
+    /*
+    |--------------------------------------------------------------------------
+    | プロフィール編集画面
+    |--------------------------------------------------------------------------
+    */
     public function edit(string $name)
     {
         $user = User::where('name', $name)->first();
@@ -45,7 +53,11 @@ class UserController extends Controller
         return view('users.edit', $data);
     }
 
-    // プロフィール編集処理
+    /*
+    |--------------------------------------------------------------------------
+    | プロフィール編集処理
+    |--------------------------------------------------------------------------
+    */
     public function update(UserRequest $request, string $name)
     {
         $validated = $request->validated();
@@ -72,21 +84,29 @@ class UserController extends Controller
         return redirect()->route('users.show', $data);
     }
 
-    // ユーザー退会
+    /*
+    |--------------------------------------------------------------------------
+    | ユーザー退会
+    |--------------------------------------------------------------------------
+    */
     public function destroy(string $name)
     {
         $user = User::where('name', $name)->first();
 
         // UserPolicyのdeleteメソッドでアクセス制限
         $this->authorize('delete', $user);
-        
+
         $user->delete();
         Auth::logout();
 
         return redirect()->route('articles.index');
     }
 
-    // いいね一覧画面
+    /*
+    |--------------------------------------------------------------------------
+    | いいね一覧画面
+    |--------------------------------------------------------------------------
+    */
     public function likes(string $name)
     {
         $user = User::where('name', $name)->first()
@@ -104,7 +124,11 @@ class UserController extends Controller
         return view('users.likes', $data);
     }
 
-    // フォロー一覧画面
+    /*
+    |--------------------------------------------------------------------------
+    | フォロー一覧画面
+    |--------------------------------------------------------------------------
+    */
     public function followings(string $name)
     {
         $user = User::where('name', $name)->first()
@@ -122,7 +146,11 @@ class UserController extends Controller
         return view('users.followings', $data);
     }
 
-    // フォロワー一覧画面
+    /*
+    |--------------------------------------------------------------------------
+    | フォロワー一覧画面
+    |--------------------------------------------------------------------------
+    */
     public function followers(string $name)
     {
         $user = User::where('name', $name)->first()
@@ -140,7 +168,11 @@ class UserController extends Controller
         return view('users.followers', $data);
     }
 
-    // フォロー機能
+    /*
+    |--------------------------------------------------------------------------
+    | フォロー機能
+    |--------------------------------------------------------------------------
+    */
     public function follow(Request $request, string $name)
     {
         $user = User::where('name', $name)->first();
@@ -155,7 +187,11 @@ class UserController extends Controller
         return ['name' => $name];
     }
 
-    // フォロー解除機能
+    /*
+    |--------------------------------------------------------------------------
+    | フォロー解除機能
+    |--------------------------------------------------------------------------
+    */
     public function unfollow(Request $request, string $name)
     {
         $user = User::where('name', $name)->first();
@@ -169,7 +205,11 @@ class UserController extends Controller
         return ['name' => $name];
     }
 
-    // パスワード編集画面
+    /*
+    |--------------------------------------------------------------------------
+    | パスワード編集画面
+    |--------------------------------------------------------------------------
+    */
     public function editPassword(string $name)
     {
         $user = User::where('name', $name)->first();
@@ -184,7 +224,11 @@ class UserController extends Controller
         return view('users.edit_password', $data);
     }
 
-    // パスワード編集処理
+    /*
+    |--------------------------------------------------------------------------
+    | パスワード編集処理
+    |--------------------------------------------------------------------------
+    */
     public function updatePassword(Request $request, string $name)
     {
         $user = User::where('name', $name)->first();

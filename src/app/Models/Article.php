@@ -13,10 +13,7 @@ class Article extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'pref_id',
-        'title',
-        'body',
-        'image',
+        'pref_id', 'title', 'body', 'image',
     ];
 
     public function user(): BelongsTo
