@@ -70,14 +70,14 @@
 ## 認証機能
 - 会員登録 / ログイン / ログアウト
 - ゲストログイン機能
-- Google会員登録・ログイン(GCP OAuth)
+- Google会員登録 / ログイン(GCP OAuth)
 - プロフィール編集
 - メールアドレス変更(SendGrid)
 - パスワード再設定(SendGrid)
 - 退会
 
 ## 実装予定(2022/04/15時点)
-- Twitter会員登録・ログイン(Twitter OAuth)
+- Twitter会員登録 / ログイン(Twitter OAuth)
 - ユーザー検索機能
 - DM機能
 - SNSシェア機能
