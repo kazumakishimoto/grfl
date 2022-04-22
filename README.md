@@ -55,9 +55,9 @@
 ## ディレクトリ構造
 ```
 【ルートディレクトリ】
-├─.circleci
+├─ .circleci
 │   └─ config.yml
-├─aws / CloudFormation
+├─ aws / CloudFormation
 │   └─ ec2.yml
 ├─ docker
 │   └─ mysql
