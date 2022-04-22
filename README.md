@@ -52,6 +52,24 @@
 - draw.io
 - MacBook Air	M1,2020(macOS	Monterey 12.3)
 
+## ディレクトリ構造
+```
+【ルートディレクトリ】
+├─.circleci
+│   └─ config.yml
+├─aws / CloudFormation
+│   └─ ec2.yml
+├─ docker
+│   └─ mysql
+│   └─ nginx
+│   └─ php
+│   └─ phpmyadmin
+├─ src
+│   └─ 【Laravelのパッケージ】
+│─ .env
+│─ .gitignore
+└─ docker-compose.yml
+```
 
 # 3.機能一覧
 ## メイン機能
