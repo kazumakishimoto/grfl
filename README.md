@@ -66,8 +66,6 @@
 │   └─ phpmyadmin
 ├─ src
 │   └─ 【Laravelのパッケージ】
-│─ .env
-│─ .gitignore
 └─ docker-compose.yml
 ```
 
