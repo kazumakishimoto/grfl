@@ -1,19 +1,19 @@
 # 1.アプリ概要
 - 飲食店とインフルエンサーのマッチングアプリ
-- URL(AWS):
 - URL(Heroku):https://grfl.herokuapp.com/
-- Qiita:
+- URL(AWS):※作成中(22/04)
+- Qiita:※作成中(22/04)
 - GitHub:https://github.com/kazumakishimoto/grfl
 ![top](https://user-images.githubusercontent.com/68370181/163541304-be60c925-76a3-4edd-abdc-f1f3d919d55a.png)
 
 ## コンセプト
-- 集客に困っている飲食店が簡単にSNS広告を始められる
-- 広告案件を探しているインフルエンサーがすぐに飲食店を見つけられる
-- 『安価で簡単』に広告を始められるアプリです
+- 飲食店が簡単にSNS広告を始められる
+- インフルエンサーが広告募集している飲食店を発見できる
+- 『安価で簡単』に集客広告ができるアプリです
 
 ## 特徴
-- エリアやジャンル別で飲食店/インフルエンサーを発見できる
-- 具体的な広告内容や広告条件を投稿内容から確認できる
+- 都道府県やカテゴリー別で飲食店・インフルエンサーを発見できる
+- 具体的な広告内容や広告条件を一目で確認できる
 - ダイレクトメッセージで連絡できる
 
 ## 使用画面のイメージ
@@ -69,6 +69,7 @@
 └─ docker-compose.yml
 ```
 
+
 # 3.機能一覧
 ## メイン機能
 - ユーザー投稿機能(CRUD)
@@ -92,12 +93,14 @@
 - パスワード再設定(SendGrid)
 - 退会
 
-## 実装予定(2022/04/15時点)
+## 実装予定(22/04)
+- AWSデプロイ
+- EC2 / RDS冗長化
+- 結合テスト / 統合テスト
 - Twitter会員登録 / ログイン(Twitter OAuth)
 - ユーザー検索機能
 - DM機能
 - SNSシェア機能
-- AWSデプロイ
 
 
 # 4.基本設計
@@ -130,7 +133,10 @@ https://docs.google.com/spreadsheets/d/1R7VARnAYGivhzmraesTzjtEwzi4NCR7UnvDdrqGi
 # 5.作者
 |key|value|
 |---|-----|
-|Name|岸本一眞(きしもとかずま)|
+|名前|岸本一眞(きしもとかずま)|
+|生年月日|1993/01/14|
+|居住地|大阪市阿倍野区(天王寺駅)|
+|趣味|筋トレ/サウナ/ガジェット/スパイスカレー|
 |Wantedly|[岸本一眞](https://www.wantedly.com/id/kazumakishimoto)|
 |Twitter|[@kazuma_dev](https://twitter.com/kazuma_dev)|
 |Qiita|[@kazumakishimoto](https://qiita.com/kazumakishimoto)|
