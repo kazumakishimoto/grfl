@@ -1,8 +1,8 @@
 # 1.アプリ概要
-- 飲食店とインフルエンサーのマッチングアプリ`『grfl』
+- 飲食店とインフルエンサーのマッチングアプリ『grfl』
 - URL(Heroku):https://grfl.herokuapp.com/
-- URL(AWS):※作成中(22/04)
-- Qiita:※作成中(22/04)
+- URL(AWS):※作成中(22/05)
+- Qiita:※作成中(22/05)
 - GitHub:https://github.com/kazumakishimoto/grfl
 ![top](https://user-images.githubusercontent.com/68370181/163541304-be60c925-76a3-4edd-abdc-f1f3d919d55a.png)
 
@@ -93,7 +93,7 @@
 - パスワード再設定(SendGrid)
 - 退会
 
-## 実装予定(22/04)
+## 実装予定(22/05)
 - AWSデプロイ
 - EC2 / RDS冗長化
 - 結合テスト / 統合テスト
