@@ -32,7 +32,7 @@
 - PHPUnit	8.0
 
 ## インフラ
-- AWS(EB,VPC,EC2,RDS,Route53,ALB,ACM,SNS,Chatbot,IAM,CloudWatch,CloudFormation,CodeDeploy)
+- AWS(CloudFormation,VPC,EC2,RDS,S3,Route53,ALB,ACM,SNS,Chatbot,IAM,CloudWatch,CodeDeploy)
 - Heroku 7.59.4
 - Docker	20.10.11 / docker-compose	v2.2.1
 - CircleCI	2.1
