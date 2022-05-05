@@ -1,5 +1,5 @@
 # 1.アプリ概要
-- 飲食店とインフルエンサーのマッチングアプリgrfl
+- 飲食店とインフルエンサーのマッチングアプリ『grfl』
 - URL(Heroku):https://grfl.herokuapp.com/
 - URL(AWS):※作成中(22/05)
 - Qiita:※作成中(22/05)
@@ -32,7 +32,7 @@
 - PHPUnit	8.0
 
 ## インフラ
-- AWS(CloudFormation,VPC,EC2,RDS,S3,Route53,ALB,ACM,SNS,Chatbot,IAM,CloudWatch,CodeDeploy)
+- AWS(CloudFormation/VPC/EC2/RDS/S3/Route53/ALB/ACM/CodeDeploy/SNS/Chatbot/IAM/CloudWatch)
 - Heroku 7.59.4
 - Docker	20.10.11 / docker-compose	v2.2.1
 - CircleCI	2.1
