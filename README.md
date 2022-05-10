@@ -1,5 +1,5 @@
 # 1.アプリ概要
-- 飲食店とインフルエンサーのマッチングアプリ『grfl』test
+- 飲食店とインフルエンサーのマッチングアプリ『grfl』
 - URL(Heroku):https://grfl.herokuapp.com/
 - URL(AWS):作成中(22/05)
 - Qiita:作成中(22/05)
