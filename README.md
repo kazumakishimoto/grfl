@@ -17,7 +17,7 @@
 - ダイレクトメッセージで連絡できる
 
 ## 使用画面のイメージ
-![demo](https://user-images.githubusercontent.com/68370181/163667709-389bd6f5-90a6-42be-a396-04776d597644.png)
+![demo](https://user-images.githubusercontent.com/68370181/169194020-4e4f251c-2ec2-4934-bbe7-c815829d2dcf.png)
 
 
 # 2.使用技術
