@@ -6,9 +6,8 @@
 @include('nav')
 <div class="container">
     <div class="card mt-5">
-        <div class="card-body text-center">
-            <h2 class='h4 card-title text-center mt-5 mb-1'><span class="bg cyan darken-3 text-white py-3 px-4 rounded-pill">プロフィール編集</span></h2>
-            <p class="mt-4">Profile Edit</p>
+        <div class="card-body text-center p-0">
+            <h2 class='h4 card-header text-center mb-1'><span class="py-3 px-4">Profile Edit<i class="fas fa-edit ml-2"></i></span></h2>
         </div>
         @if (Auth::id() == config('user.guest_user.id'))
         <div class="card-body text-center">
