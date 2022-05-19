@@ -19,9 +19,11 @@ class ContactController extends Controller
     public function confirm(ContactRequest $request)
     {
         $inputs = $request->all();
-        return view('contact.confirm', [
+
+        $data = [
             'inputs' => $inputs,
-        ]);
+        ];
+        return view('contact.confirm', $data);
     }
 
     public function send(ContactRequest $request)
@@ -30,7 +32,7 @@ class ContactController extends Controller
 
         if ($request->has("back")) {
             return redirect()->route('contact.index')
-            ->withInput($inputs);
+                ->withInput($inputs);
         }
 
         \Mail::to('grfl.official@gmail.com')->send(new ContactSendmail($inputs));
