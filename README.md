@@ -2,7 +2,7 @@
 - 飲食店とインフルエンサーのマッチングアプリ『grfl』
 - URL①:https://grfl.work/
 - URL②:https://grfl.herokuapp.com/
-- Qiita:https://qiita.com/kazumakishimoto
+- Qiita:https://qiita.com/kazumakishimoto/items/2ac669119c968e30ae37
 - GitHub:https://github.com/kazumakishimoto/grfl
 ![top](https://user-images.githubusercontent.com/68370181/163541304-be60c925-76a3-4edd-abdc-f1f3d919d55a.png)
 
