@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', 'お問い合わせ - grfl -')
+@section('title', 'お問い合わせ - grfl')
 
 @section('content')
 

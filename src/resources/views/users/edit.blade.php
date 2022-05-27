@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', 'プロフィール編集')
+@section('title', 'プロフィール編集 - grfl')
 
 @section('content')
 @include('nav')
