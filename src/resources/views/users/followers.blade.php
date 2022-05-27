@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', $user->name . 'のフォロワー')
+@section('title', $user->name . 'のフォロワー - grfl')
 
 @section('content')
   @include('nav')
