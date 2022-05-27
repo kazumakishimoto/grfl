@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', 'プライバシーポリシー - grfl -')
+@section('title', 'プライバシーポリシー - grfl')
 
 @section('content')
 

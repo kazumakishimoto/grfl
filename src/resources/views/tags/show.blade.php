@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', $tag->hashtag)
+@section('title', $tag->hashtag . '- grfl')
 
 @section('content')
   @include('nav')

@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', 'ユーザー登録 - grfl -')
+@section('title', 'ユーザー登録 - grfl')
 
 @section('content')
 
