@@ -112,6 +112,7 @@ jobs:
           command: |
             ssh -o StrictHostKeyChecking=no -t grfl@${HOST_NAME} "cd /var/www/grfl && \
               git pull origin master && \
+              cd /var/www/grfl/src && \
               composer install -n --no-dev --prefer-dist && \
               npm ci && \
               npm run prod && \
