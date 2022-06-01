@@ -2,10 +2,10 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /var/www/grfl
+    destination: /var/www/grfl/src
 
 permissions:
-  - object: /var/www/grfl
+  - object: /var/www/grfl/src
     owner: grfl
     group: grfl
 
