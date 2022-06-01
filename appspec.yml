@@ -1,0 +1,16 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /var/www/grfl
+
+permissions:
+  - object: /var/www/grfl
+    owner: grfl
+    group: grfl
+
+hooks:
+  AfterInstall:
+    - location: ./scripts/after_install.sh
+      timeout: 60
+      runas: grfl
