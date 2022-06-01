@@ -2,6 +2,6 @@
 
 set -eux
 
-cd ~/src
+cd /var/www/grfl/src
 php artisan migrate --force
 php artisan config:cache
