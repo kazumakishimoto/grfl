@@ -4,8 +4,8 @@
       type="button"
       class="btn m-0 p-1 shadow-none"
     >
-      <i class="fas fa-heart"
-         :class="{'red-text':this.isLikedBy, 'animated heartBeat fast':this.gotToLike}"
+      <i class="fas fa-thumbs-up"
+         :class="{'blue-text':this.isLikedBy, 'animated heartBeat fast':this.gotToLike}"
          @click="clickLike"
       />
     </button>
