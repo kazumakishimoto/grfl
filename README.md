@@ -73,7 +73,7 @@
 # 3.機能一覧
 ## メイン機能
 - ユーザー投稿機能(CRUD)
-- 画像アップロード機能(AWS S3バケット)
+- 画像アップロード機能(AWS S3)
 - ページネーション機能
 - コメント機能(CRUD)
 - タグ機能(Vue.js / Vue Tags Input)
@@ -87,18 +87,23 @@
 ## 認証機能
 - 会員登録 / ログイン / ログアウト
 - ゲストログイン機能
-- Google会員登録 / ログイン(GCP OAuth)
+- Google会員登録 / ログイン(Google OAuth)
 - プロフィール編集
 - メールアドレス変更(SendGrid)
 - パスワード再設定(SendGrid)
 - 退会
 
-## 実装予定(22/06)
+## インフラ
+- CloudFormationで環境構築(VPC / EC2)
+- RDS for MySQL
+- ACM × ELBでHTTPS化
+- CircleCI × CodeDeployで自動デプロイ
 - SNS × ChatbotでSlackデプロイ通知
-- CircleCI × Code4兄弟で自動デプロイ
-- S3画像アップロード
-- EC2 / RDS冗長化
-- 結合テスト / 統合テスト
+
+##  実装予定
+- API連携(Google / Twitter / Sendgrid)
+- EC2 / RDSの冗長化
+- 結合 / 統合テストの充実
 - Twitter会員登録 / ログイン(Twitter OAuth)
 - ユーザー検索機能
 - DM機能
