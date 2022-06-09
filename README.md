@@ -88,6 +88,7 @@
 - 会員登録 / ログイン / ログアウト
 - ゲストログイン機能
 - Google会員登録 / ログイン(Google OAuth)
+- Twitter会員登録 / ログイン(Twitter OAuth)
 - プロフィール編集
 - メールアドレス変更(SendGrid)
 - パスワード再設定(SendGrid)
@@ -101,10 +102,8 @@
 - SNS × ChatbotでSlackデプロイ通知
 
 ##  実装予定
-- API連携(Google / Twitter / Sendgrid)
 - EC2 / RDSの冗長化
 - 結合 / 統合テストの充実
-- Twitter会員登録 / ログイン(Twitter OAuth)
 - ユーザー検索機能
 - DM機能
 - SNSシェア機能
