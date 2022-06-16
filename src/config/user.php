@@ -11,5 +11,6 @@ return [
 
     'avatar_path' => [
         'default' => 'images/default.png',
+        'kazumakishimoto' => 'images/kazumakishimoto.jpg',
     ],
 ];
