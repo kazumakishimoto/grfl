@@ -15,6 +15,15 @@ class ArticlesTableSeeder extends Seeder
     public function run()
     {
         $article = Article::create([
+            'user_id'    => '1',
+            'pref_id'    => '27',
+            'title'       => 'guest',
+            'body'       => 'guest',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        $article = Article::create([
             'user_id'    => '2',
             'pref_id'    => '27',
             'title'       => '広告案件募集',
@@ -22,7 +31,6 @@ class ArticlesTableSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
-
 
         for ($i = 3; $i <= 5; $i++) {
             $article = Article::create([
