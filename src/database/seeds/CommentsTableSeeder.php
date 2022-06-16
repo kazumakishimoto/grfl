@@ -17,7 +17,7 @@ class CommentsTableSeeder extends Seeder
             Comment::create([
                 'user_id' => 1,
                 'article_id' => $i,
-                'comment' => 'test_comment' . $i,
+                'comment' => 'よろしくお願いします',
                 'created_at' => now(),
                 'updated_at' => now()
             ]);
