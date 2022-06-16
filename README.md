@@ -6,6 +6,7 @@
 |URL(Heroku)|https://grfl.herokuapp.com/|
 |Qiita|https://qiita.com/kazumakishimoto/items/2ac669119c968e30ae37|
 |GitHub|https://github.com/kazumakishimoto/grfl|
+
 ![top](https://user-images.githubusercontent.com/68370181/163541304-be60c925-76a3-4edd-abdc-f1f3d919d55a.png)
 
 ## コンセプト
@@ -23,6 +24,23 @@
 
 
 # 2.使用技術
+## ディレクトリ構造
+```
+【ルートディレクトリ】
+├─ .circleci
+│   └─ config.yml
+├─ aws / CloudFormation
+│   └─ ec2.yml
+├─ docker
+│   └─ mysql
+│   └─ nginx
+│   └─ php
+│   └─ phpmyadmin
+├─ src
+│   └─ 【Laravelのパッケージ】
+└─ docker-compose.yml
+```
+
 ## フロントエンド
 - Vue.js 2.6.14
 - jQuery 3.4.1
@@ -53,23 +71,6 @@
 - VScode
 - draw.io
 - MacBook Air	M1,2020(macOS	Monterey 12.3)
-
-## ディレクトリ構造
-```
-【ルートディレクトリ】
-├─ .circleci
-│   └─ config.yml
-├─ aws / CloudFormation
-│   └─ ec2.yml
-├─ docker
-│   └─ mysql
-│   └─ nginx
-│   └─ php
-│   └─ phpmyadmin
-├─ src
-│   └─ 【Laravelのパッケージ】
-└─ docker-compose.yml
-```
 
 
 # 3.機能一覧
@@ -117,15 +118,44 @@
 ## 画面遷移図
 ![gui](https://user-images.githubusercontent.com/68370181/160355552-328990f2-bc02-4607-9a90-32a48eff4a85.png)
 
-## AWS構成図
+## 開発環境
+- 開発環境は`Docker / docker-compose`
+
+|key|value|
+|:--|:--|
+|php|app|
+|nginx|web|
+|mysql|db|
+|phpmyadmin|db管理|
+
+## 本番環境
+- AWS構成図
+- 本番環境は開発環境と同じ`LEMP環境`
+- CI/CDツールは`CircleCI`
+
 ![aws](https://user-images.githubusercontent.com/68370181/166865919-21a4babf-2e8f-4bdf-aefa-e540026c9280.png)
+
+|key|value|
+|:--|:--|
+|CloudFormation|環境構築|
+|VPC|サブネット(EC2 / RDS)|
+|EC2|nginx / php-fpm(public subnet 1a,1c)|
+|RDS|MySQL(private subnet 1a,1c)|
+|S3|画像用ストレージ|
+|Route53|DNSレコード管理|
+|ALB|ロードバランサー|
+|ACM|SSL証明書取得(HTTPS化)|
+|SNS|Slackデプロイ通知|
+|Chatbot|Slackデプロイ通知|
+|CircleCI|自動デプロイ|
+|CodeDeploy|自動デプロイ|
+|IAM|権限付与|
+|CloudWatch|料金確認|
 
 ## ER図
 ![erd](https://user-images.githubusercontent.com/68370181/163666380-247d7cb3-3e61-4fdb-98fb-4f16d16aa59c.png)
 
 ## テーブル定義書
-https://docs.google.com/spreadsheets/d/1R7VARnAYGivhzmraesTzjtEwzi4NCR7UnvDdrqGi9NU/edit?usp=sharing
-
 | テーブル名 | 説明 |
 |----|----|
 | Users | ユーザー情報 |
@@ -139,6 +169,7 @@ https://docs.google.com/spreadsheets/d/1R7VARnAYGivhzmraesTzjtEwzi4NCR7UnvDdrqGi
 | Rooms | ダイレクトメッセージのルーム情報 |
 | Entries | MessagesとRoomsの中間テーブル |
 
+https://docs.google.com/spreadsheets/d/1R7VARnAYGivhzmraesTzjtEwzi4NCR7UnvDdrqGi9NU/edit?usp=sharing
 
 # 5.作者
 |key|value|
