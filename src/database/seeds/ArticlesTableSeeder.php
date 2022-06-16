@@ -14,12 +14,22 @@ class ArticlesTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i <= 5; $i++) {
+        $article = Article::create([
+            'user_id'    => '2',
+            'pref_id'    => '27',
+            'title'       => '広告案件募集',
+            'body'       => '大阪の飲食店でSNS広告します',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+
+        for ($i = 3; $i <= 5; $i++) {
             $article = Article::create([
                 'user_id'    => $i,
                 'pref_id'    => '27',
-                'title'       => 'test_title' . $i,
-                'body'       => 'test_body' . $i,
+                'title'       => 'インフルエンサー募集',
+                'body'       => 'SNS広告できる方はコメント下さい',
                 'created_at' => now(),
                 'updated_at' => now()
             ]);
