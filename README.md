@@ -1,20 +1,22 @@
 # 1.アプリ概要
-- 飲食店とインフルエンサーのマッチングアプリ『grfl』
-- URL①:https://grfl.work/
-- URL②:https://grfl.herokuapp.com/
-- Qiita:https://qiita.com/kazumakishimoto/items/2ac669119c968e30ae37
-- GitHub:https://github.com/kazumakishimoto/grfl
+|key|value|
+|---|-----|
+|Name|飲食店とインフルエンサーのマッチングアプリ`grfl`|
+|URL(AWS)|https://grfl.work/|
+|URL(Heroku)|https://grfl.herokuapp.com/|
+|Qiita|https://qiita.com/kazumakishimoto/items/2ac669119c968e30ae37|
+|GitHub|https://github.com/kazumakishimoto/grfl|
 ![top](https://user-images.githubusercontent.com/68370181/163541304-be60c925-76a3-4edd-abdc-f1f3d919d55a.png)
 
 ## コンセプト
-- 飲食店が簡単にSNS広告を始められる
-- インフルエンサーが広告募集している飲食店を発見できる
-- 『安価で簡単』に集客広告ができるアプリです
+- 飲食店：手軽にSNS集客を始められる
+- インフルエンサー：広告募集中の飲食店を見つけられる
+- 『安価&簡単』にSNS集客できるWEBアプリケーション
 
 ## 特徴
-- 都道府県やカテゴリー別で飲食店・インフルエンサーを発見できる
-- 具体的な広告内容や広告条件を一目で確認できる
-- ダイレクトメッセージで連絡できる
+- 広告内容や広告条件の発信
+- 都道府県やカテゴリー別の飲食店・インフルエンサー検索
+- ダイレクトメッセージで連絡(※作成中)
 
 ## 使用画面のイメージ
 ![demo](https://user-images.githubusercontent.com/68370181/169194020-4e4f251c-2ec2-4934-bbe7-c815829d2dcf.png)
@@ -102,11 +104,13 @@
 - SNS × ChatbotでSlackデプロイ通知
 
 ##  実装予定
-- EC2 / RDSの冗長化
-- 結合 / 統合テストの充実
+- EC2 / RDS冗長化
+- 結合テスト / 統合テスト
 - ユーザー検索機能
 - DM機能
 - SNSシェア機能
+- マルチログイン機能
+- フロントエンド全般
 
 
 # 4.基本設計
