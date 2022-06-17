@@ -37,7 +37,7 @@ class ArticlesTableSeeder extends Seeder
                 'user_id'    => $i,
                 'pref_id'    => '27',
                 'title'       => 'インフルエンサー募集',
-                'body'       => 'SNS広告できる方はコメント下さい',
+                'body'       => 'SNS広告を募集します',
                 'created_at' => now(),
                 'updated_at' => now()
             ]);
