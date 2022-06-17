@@ -46,6 +46,9 @@ class UserController extends Controller
     {
         $user = User::where('name', $name)->first();
 
+        // UserPolicyのupdateメソッドでアクセス制限
+        $this->authorize('update', $user);
+
         $data = [
             'user' => $user
         ];
