@@ -44,20 +44,30 @@
 ## フロントエンド
 - Vue.js 2.6.14
 - jQuery 3.4.1
-- HTML / CSS / Sass / MDBootstrap
+- HTML / CSS / Sass / Bootstrap
 
 ## バックエンド
 - PHP	7.4.1
 - Laravel	6.20.43
 - PHPUnit	8.0
 
-## インフラ
+## DB
+- MySQL	5.7.36
+- PHPMyAdmin
+- PostgreSQL(Heroku)
+
+## 開発環境
+- Git / GitHub
+- Docker	20.10.11 / docker-compose	v2.2.1
+- VScode
+- iTerm2
+- MacBook Air	M1,2020(macOS	Monterey 12.3)
+
+## 本番環境
 - AWS(CloudFormation/VPC/EC2/RDS/S3/Route53/ALB/ACM/CodeDeploy/SNS/Chatbot/IAM/CloudWatch)
 - Heroku 7.59.4
-- Docker	20.10.11 / docker-compose	v2.2.1
 - CircleCI	2.1
-- nginx	1.18.0
-- MySQL	5.7.36
+- Nginx	1.18.0
 - SendGrid
 
 ## パッケージ
@@ -66,12 +76,9 @@
 - Homebrew 3.4.2
 
 ## その他使用ツール
-- Git / GitHub
-- PHPMyAdmin
-- VScode
 - draw.io
-- MacBook Air	M1,2020(macOS	Monterey 12.3)
-
+- Notion
+- Google Sheets
 
 # 3.機能一覧
 ## メイン機能
