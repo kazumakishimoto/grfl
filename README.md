@@ -57,7 +57,7 @@
 - PostgreSQL(Heroku)
 
 ## 開発環境
-- Git / GitHub
+- Git(Git-flow) / GitHub
 - Docker	20.10.11 / docker-compose	v2.2.1
 - VScode
 - iTerm2
@@ -116,8 +116,12 @@
 - 結合テスト / 統合テスト
 - ユーザー検索機能
 - DM機能
+- 通知機能
 - SNSシェア機能
 - マルチログイン機能
+- Linterで静的解析(Larastan)
+- Formatterで自動整形(phpcs)
+- パッケージを活用したデバッグ(Tinker / Xdebug)
 - フロントエンド全般
 
 
@@ -127,6 +131,7 @@
 
 ## 開発環境
 - 開発環境は`Docker / docker-compose`
+- ソース管理は`Git(Git-flow) / GitHub`
 
 |key|value|
 |:--|:--|
