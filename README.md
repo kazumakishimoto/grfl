@@ -4,14 +4,14 @@
 |Name|飲食店とインフルエンサーのマッチングアプリ`grfl`|
 |URL(AWS)|https://grfl.work/|
 |URL(Heroku)|https://grfl.herokuapp.com/|
-|Qiita|https://qiita.com/kazumakishimoto/items/2ac669119c968e30ae37|
+|解説記事|https://qiita.com/kazumakishimoto/items/2ac669119c968e30ae37|
 |GitHub|https://github.com/kazumakishimoto/grfl|
 
 ![top](https://user-images.githubusercontent.com/68370181/163541304-be60c925-76a3-4edd-abdc-f1f3d919d55a.png)
 
 ## コンセプト
-- 飲食店：手軽にSNS集客を始められる
-- インフルエンサー：広告募集中の飲食店を見つけられる
+- 【飲食店】手軽にSNS集客を始められる
+- 【インフルエンサー】広告募集中の飲食店を見つけられる
 - 『安価&簡単』にSNS集客できるWEBアプリケーション
 
 ## 特徴
@@ -194,3 +194,4 @@ https://docs.google.com/spreadsheets/d/1R7VARnAYGivhzmraesTzjtEwzi4NCR7UnvDdrqGi
 |Twitter|[@kazuma_dev](https://twitter.com/kazuma_dev)|
 |Qiita|[@kazumakishimoto](https://qiita.com/kazumakishimoto)|
 |GitHub|[@kazumakishimoto](https://github.com/kazumakishimoto)|
+|職務経歴書|https://github.com/kazumakishimoto/Curriculum-vitae|
