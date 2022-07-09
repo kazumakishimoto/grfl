@@ -145,7 +145,7 @@
 - 本番環境は開発環境と同じ`LEMP環境`
 - CI/CDツールは`CircleCI`
 
-![aws](https://user-images.githubusercontent.com/68370181/166865919-21a4babf-2e8f-4bdf-aefa-e540026c9280.png)
+![aws](https://user-images.githubusercontent.com/68370181/178103075-eec5508a-4d29-409c-84f4-3f687fa9cd5d.png)
 
 |key|value|
 |:--|:--|
