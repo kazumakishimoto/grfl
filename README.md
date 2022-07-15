@@ -4,8 +4,8 @@
 |Name|飲食店とインフルエンサーのマッチングアプリ`grfl`|
 |URL(AWS)|https://grfl.work/|
 |URL(Heroku)|https://grfl.herokuapp.com/|
-|解説記事|https://qiita.com/kazumakishimoto/items/2ac669119c968e30ae37|
 |GitHub|https://github.com/kazumakishimoto/grfl|
+|Qiita|https://qiita.com/kazumakishimoto/items/2ac669119c968e30ae37|
 
 ![top](https://user-images.githubusercontent.com/68370181/163541304-be60c925-76a3-4edd-abdc-f1f3d919d55a.png)
 
@@ -188,10 +188,9 @@ https://docs.google.com/spreadsheets/d/1R7VARnAYGivhzmraesTzjtEwzi4NCR7UnvDdrqGi
 |---|-----|
 |名前|岸本一眞(きしもとかずま)|
 |生年月日|1993/01/14|
-|居住地|大阪市阿倍野区(天王寺駅)|
-|趣味|筋トレ/サウナ/ガジェット/スパイスカレー|
-|Wantedly|[岸本一眞](https://www.wantedly.com/id/kazumakishimoto)|
-|Twitter|[@kazuma_dev](https://twitter.com/kazuma_dev)|
-|Qiita|[@kazumakishimoto](https://qiita.com/kazumakishimoto)|
+|居住地|大阪市|
 |GitHub|[@kazumakishimoto](https://github.com/kazumakishimoto)|
+|Qiita|[@kazumakishimoto](https://qiita.com/kazumakishimoto)|
+|Twitter|[@kazuma_dev](https://twitter.com/kazuma_dev)|
+|Wantedly|[@kazumakishimoto](https://www.wantedly.com/id/kazumakishimoto)|
 |職務経歴書|https://github.com/kazumakishimoto/Curriculum-vitae|
