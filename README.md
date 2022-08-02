@@ -2,22 +2,22 @@
 |key|value|
 |---|-----|
 |Name|飲食店とインフルエンサーのマッチングアプリ`grfl`|
-|URL(AWS)|https://grfl.work/|
-|URL(Heroku)|https://grfl.herokuapp.com/|
+|URL①|https://grfl.work/|
+|URL②|https://grfl.herokuapp.com/|
 |GitHub|https://github.com/kazumakishimoto/grfl|
 |Qiita|https://qiita.com/kazumakishimoto/items/2ac669119c968e30ae37|
 
 ![top](https://user-images.githubusercontent.com/68370181/163541304-be60c925-76a3-4edd-abdc-f1f3d919d55a.png)
 
 ## コンセプト
-- 【飲食店】手軽にSNS集客を始められる
-- 【インフルエンサー】広告募集中の飲食店を見つけられる
-- 『安価&簡単』にSNS集客できるWEBアプリケーション
+- 飲食店が安価で簡単にSNS広告を始められるWEBアプリケーション
+- 飲食店：広告依頼を投稿することで、インフルエンサーにSNS広告の募集ができる
+- インフルエンサー：投稿一覧から自分に合った広告案件を発見できる
 
 ## 特徴
-- 広告内容や広告条件の発信
-- 都道府県やカテゴリー別の飲食店・インフルエンサー検索
-- ダイレクトメッセージで連絡(※作成中)
+- 飲食店のSNS広告内容の投稿機能・画像アップロード機能
+- 都道府県・カテゴリー別の投稿検索機能・ソート機能
+- ダイレクトメッセージ機能(作成中)
 
 ## 使用画面のイメージ
 ![demo](https://user-images.githubusercontent.com/68370181/169194020-4e4f251c-2ec2-4934-bbe7-c815829d2dcf.png)
@@ -61,7 +61,7 @@
 - Docker	20.10.11 / docker-compose	v2.2.1
 - VScode
 - iTerm2
-- MacBook Air	M1,2020(macOS	Monterey 12.3)
+- MacOS
 
 ## 本番環境
 - AWS(CloudFormation/VPC/EC2/RDS/S3/Route53/ALB/ACM/CodeDeploy/SNS/Chatbot/IAM/CloudWatch)
@@ -132,6 +132,7 @@
 ## 開発環境
 - 開発環境は`Docker / docker-compose`
 - ソース管理は`Git(Git-flow) / GitHub`
+- IDEとOSは`VScode / MacOS`
 
 |key|value|
 |:--|:--|
@@ -141,9 +142,9 @@
 |phpmyadmin|db管理|
 
 ## 本番環境
-- AWS構成図
-- 本番環境は開発環境と同じ`LEMP環境`
-- CI/CDツールは`CircleCI`
+- 環境構築は`CloudFormation`
+- CI/CDツールは`CircleCI / CodeDeploy`
+- 独学にて`Subnet / Route53 / ALB / ACM / S3`を環境構築
 
 ![aws](https://user-images.githubusercontent.com/68370181/178103075-eec5508a-4d29-409c-84f4-3f687fa9cd5d.png)
 
@@ -165,6 +166,7 @@
 |CloudWatch|料金確認|
 
 ## ER図
+- 独学にて`Commnts / Messages / Rooms / Entries`テーブル作成
 ![erd](https://user-images.githubusercontent.com/68370181/163666380-247d7cb3-3e61-4fdb-98fb-4f16d16aa59c.png)
 
 ## テーブル定義書
@@ -181,14 +183,15 @@
 | Rooms | ダイレクトメッセージのルーム情報 |
 | Entries | MessagesとRoomsの中間テーブル |
 
-https://docs.google.com/spreadsheets/d/1R7VARnAYGivhzmraesTzjtEwzi4NCR7UnvDdrqGi9NU/edit?usp=sharing
+https://docs.google.com/spreadsheets/d/1R7VARnAYGivhzmraesTzjtEwzi4NCR7UnvDdrqGi9NU/
 
 # 5.作者
 |key|value|
 |---|-----|
 |名前|岸本一眞(きしもとかずま)|
-|生年月日|1993/01/14|
-|居住地|大阪市|
+|住所|大阪市阿倍野区|
+|趣味|サウナ / 筋トレ / アニメ / スパイスカレー / 愛犬とドライブ|
+|ポートフォリオ|[**grfl.work**](https://grfl.work)|
 |GitHub|[@kazumakishimoto](https://github.com/kazumakishimoto)|
 |Qiita|[@kazumakishimoto](https://qiita.com/kazumakishimoto)|
 |Twitter|[@kazuma_dev](https://twitter.com/kazuma_dev)|
