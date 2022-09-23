@@ -2,8 +2,7 @@
 |key|value|
 |---|-----|
 |Name|飲食店とインフルエンサーのマッチングアプリ`grfl`|
-|URL①|https://grfl.work/|
-|URL②|https://grfl.herokuapp.com/|
+|URL|https://grfl.work/|
 |GitHub|https://github.com/kazumakishimoto/grfl|
 |Qiita|https://qiita.com/kazumakishimoto/items/2ac669119c968e30ae37|
 
@@ -54,7 +53,6 @@
 ## DB
 - MySQL	5.7.36
 - PHPMyAdmin
-- PostgreSQL(Heroku)
 
 ## 開発環境
 - Git(Git-flow) / GitHub
@@ -65,7 +63,6 @@
 
 ## 本番環境
 - AWS(CloudFormation/VPC/EC2/RDS/S3/Route53/ALB/ACM/CodeDeploy/SNS/Chatbot/IAM/CloudWatch)
-- Heroku 7.59.4
 - CircleCI	2.1
 - Nginx	1.18.0
 - SendGrid
@@ -116,9 +113,6 @@
 - 結合テスト / 統合テスト
 - ユーザー検索機能
 - DM機能
-- 通知機能
-- SNSシェア機能
-- マルチログイン機能
 - Linterで静的解析(Larastan)
 - Formatterで自動整形(phpcs)
 - パッケージを活用したデバッグ(Tinker / Xdebug)
@@ -166,7 +160,7 @@
 |CloudWatch|料金確認|
 
 ## ER図
-- 独学にて`Commnts / Messages / Rooms / Entries`テーブル作成
+- 独学にて`Comments / Messages / Rooms / Entries`テーブル作成
 ![erd](https://user-images.githubusercontent.com/68370181/163666380-247d7cb3-3e61-4fdb-98fb-4f16d16aa59c.png)
 
 ## テーブル定義書
