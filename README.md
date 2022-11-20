@@ -6,7 +6,7 @@
 |GitHub|https://github.com/kazumakishimoto/grfl|
 |Qiita|https://qiita.com/kazumakishimoto/items/2ac669119c968e30ae37|
 
-![top](https://user-images.githubusercontent.com/68370181/163541304-be60c925-76a3-4edd-abdc-f1f3d919d55a.png)
+![top](https://user-images.githubusercontent.com/68370181/202880273-db7d6990-18c5-43c5-91c2-41c09fb5b264.png)
 
 ## コンセプト
 - 飲食店が安価で簡単にSNS広告を始められるWEBアプリケーション
@@ -124,9 +124,9 @@
 ![gui](https://user-images.githubusercontent.com/68370181/160355552-328990f2-bc02-4607-9a90-32a48eff4a85.png)
 
 ## 開発環境
-- 開発環境は`Docker / docker-compose`
-- ソース管理は`Git(Git-flow) / GitHub`
-- IDEとOSは`VScode / MacOS`
+- 開発環境：`Docker / docker-compose`
+- バージョン管理：`Git(Git-flow) / GitHub`
+- 開発ツール：`VScode / MacOS`
 
 |key|value|
 |:--|:--|
@@ -136,9 +136,9 @@
 |phpmyadmin|db管理|
 
 ## 本番環境
-- 環境構築は`CloudFormation`
-- CI/CDツールは`CircleCI / CodeDeploy`
-- 独学にて`Subnet / Route53 / ALB / ACM / S3`を環境構築
+- `IaC`：`CloudFormation`
+- `CI/CD`：`CircleCI / CodeDeploy`
+- 本番環境：`Subnet / Route53 / ALB / ACM / S3`を環境構築
 
 ![aws](https://user-images.githubusercontent.com/68370181/178103075-eec5508a-4d29-409c-84f4-3f687fa9cd5d.png)
 
@@ -160,7 +160,6 @@
 |CloudWatch|料金確認|
 
 ## ER図
-- 独学にて`Comments / Messages / Rooms / Entries`テーブル作成
 ![erd](https://user-images.githubusercontent.com/68370181/163666380-247d7cb3-3e61-4fdb-98fb-4f16d16aa59c.png)
 
 ## テーブル定義書
@@ -184,7 +183,7 @@ https://docs.google.com/spreadsheets/d/1R7VARnAYGivhzmraesTzjtEwzi4NCR7UnvDdrqGi
 |---|-----|
 |名前|岸本一眞(きしもとかずま)|
 |住所|大阪市阿倍野区|
-|趣味|サウナ / 筋トレ / アニメ / スパイスカレー / 愛犬とドライブ|
+|趣味|サウナ / 筋トレ / アニメ / スパイスカレー / トイプードル|
 |ポートフォリオ|[**grfl.work**](https://grfl.work)|
 |GitHub|[@kazumakishimoto](https://github.com/kazumakishimoto)|
 |Qiita|[@kazumakishimoto](https://qiita.com/kazumakishimoto)|
